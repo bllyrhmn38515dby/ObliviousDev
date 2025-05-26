@@ -4,73 +4,906 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Oblivious Dev</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
   <style>
-    body { font-family: Arial, sans-serif; margin: 0; padding: 0; color: #333; }
-    header { background: #1a73e8; color: #fff; padding: 40px 20px; text-align: center; }
-    section { padding: 40px 20px; max-width: 900px; margin: auto; }
-    h2 { color: #1a73e8; }
-    .services, .portfolio { display: flex; flex-direction: column; gap: 20px; }
-    .service-item, .portfolio-item { border: 1px solid #ccc; border-radius: 10px; padding: 20px; }
-    footer { background: #f2f2f2; text-align: center; padding: 20px; font-size: 14px; }
-    a { color: #1a73e8; text-decoration: none; }
+    :root {
+      --primary-color: #5a189a; /* Darker Purple */
+      --secondary-color: #240046; /* Very Dark Purple */
+      --accent-color: #9d4edd; /* Bright Purple */
+      --secondary-accent-color: #00a896; /* Muted Cyan/Teal */
+      --text-color: #e0aaff; /* Light Purple */
+      --dark-text-color: #1f2937; /* Keep dark text for contrast on light elements if any */
+      --light-bg: #f3f4f6; /* Keep for contrast */
+      --dark-bg: #1a0035; /* Even darker background */
+      --white: #ffffff;
+      --glass-bg: rgba(255, 255, 255, 0.08); /* Slightly more visible glass */
+      --glass-border: rgba(255, 255, 255, 0.15); /* Slightly more visible border */
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      color: var(--white); /* Change body text to light for dark background */
+      line-height: 1.6;
+      background: linear-gradient(135deg, var(--secondary-color) 0%, var(--primary-color) 50%, var(--secondary-accent-color) 100%); /* Added secondary accent */
+      min-height: 100vh;
+      padding-top: 70px;
+    }
+
+    header {
+      background: linear-gradient(135deg, var(--secondary-color), var(--primary-color));
+      color: var(--white);
+      padding: 120px 20px 80px 20px; /* Adjust padding */
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      isolation: isolate;
+      border-bottom: 5px solid var(--accent-color); /* Add border */
+    }
+
+     header::before {
+      content: '';
+      position: absolute;
+      top: -60%; /* Adjust position */
+      left: -60%; /* Adjust position */
+      width: 220%; /* Adjust size */
+      height: 220%; /* Adjust size */
+      background: radial-gradient(circle at 25% 35%, rgba(157,78,221, 0.4) 0%, transparent 35%), /* Adjust opacity and size */
+                  radial-gradient(circle at 75% 65%, rgba(90,24,154, 0.4) 0%, transparent 35%); /* Adjust opacity and size */
+      animation: gradientMove 20s ease infinite; /* Adjust duration */
+      z-index: -1;
+    }
+
+    @keyframes gradientMove {
+      0% { transform: translate(0, 0) rotate(0deg); }
+      50% { transform: translate(30%, 30%) rotate(180deg); }
+      100% { transform: translate(0, 0) rotate(360deg); }
+    }
+
+    header h1 {
+      font-size: 5rem; /* Larger font size */
+      margin-bottom: 1.5rem;
+      animation: fadeInDown 1.2s ease;
+      text-shadow: 0 8px 20px rgba(0,0,0,0.6);
+      position: relative;
+      font-weight: 700;
+      letter-spacing: 3px; /* More spacing */
+    }
+
+    header h1::after {
+      content: '';
+      position: absolute;
+      bottom: -15px; /* Adjust position */
+      left: 50%;
+      transform: translateX(-50%);
+      width: 150px; /* Wider */
+      height: 7px; /* Thicker */
+      background: var(--accent-color);
+      border-radius: 4px;
+    }
+
+    header p {
+      font-size: 1.6rem; /* Larger font size */
+      opacity: 0.9;
+      animation: fadeInUp 1.2s ease;
+      max-width: 800px; /* Wider */
+      margin: 0 auto 50px auto; /* More margin */
+      font-weight: 300;
+      color: var(--text-color); /* Use light purple text */
+    }
+
+    .stats-container {
+      display: flex;
+      justify-content: center;
+      gap: 40px; /* More gap */
+      flex-wrap: wrap;
+      width: 100%;
+      max-width: 1000px; /* Wider */
+      margin-top: 40px; /* More margin */
+    }
+
+    .stat-item {
+      text-align: center;
+      padding: 30px; /* More padding */
+      background: var(--glass-bg);
+      border-radius: 20px; /* More rounded */
+      min-width: 200px; /* Wider */
+      flex-basis: 200px;
+      flex-grow: 1;
+      box-shadow: 0 12px 25px rgba(0,0,0,0.4);
+      border: 1px solid var(--glass-border);
+      backdrop-filter: blur(8px); /* More blur */
+      transition: transform 0.4s ease;
+    }
+
+    .stat-item:hover {
+        transform: translateY(-8px) scale(1.05); /* More pronounced hover */
+        box-shadow: 0 15px 30px rgba(0,0,0,0.5);
+    }
+
+    .stat-number {
+      font-size: 3.5rem; /* Larger number */
+      font-weight: 700;
+      color: var(--accent-color);
+      margin-bottom: 8px; /* More margin */
+      text-shadow: 0 3px 8px rgba(0,0,0,0.3);
+    }
+
+    .stat-label {
+      color: var(--text-color); /* Use light purple */
+      font-size: 1.2rem; /* Larger label */
+      font-weight: 400;
+    }
+
+    .scroll-indicator {
+      position: absolute;
+      bottom: 40px; /* Adjust position */
+      left: 50%;
+      transform: translateX(-50%);
+      animation: bounce 2s infinite;
+      color: var(--glass-border); /* Change color */
+      font-size: 2.5rem; /* Larger icon */
+    }
+
+    @keyframes bounce {
+      0%, 20%, 50%, 80%, 100% { transform: translateY(0) translateX(-50%); }
+      40% { transform: translateY(-25px) translateX(-50%); }
+      60% { transform: translateY(-15px) translateX(-50%); }
+    }
+
+    section {
+      padding: 100px 20px;
+      max-width: 1200px;
+      margin: auto;
+      position: relative;
+      z-index: 1;
+    }
+
+    h2 {
+      color: var(--white);
+      font-size: 3.5rem; /* Larger font size */
+      margin-bottom: 2.5rem; /* More margin */
+      text-align: center;
+      position: relative;
+      text-shadow: 0 3px 6px rgba(0,0,0,0.2);
+      font-weight: 600;
+    }
+
+    h2::after {
+      content: '';
+      display: block;
+      width: 120px; /* Wider */
+      height: 6px; /* Thicker */
+      background: #20466c;
+      margin: 1.5rem auto; /* More margin */
+      border-radius: 3px;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+
+    #about p {
+        max-width: 900px; /* Wider */
+        margin: 30px auto; /* More margin */
+        text-align: center;
+        font-size: 1.2rem; /* Larger font */
+        color: var(--white); /* Use white for better contrast */
+    }
+
+    .services, .portfolio {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); /* Adjust min width */
+      gap: 50px; /* More gap */
+      margin-top: 80px; /* More margin */
+    }
+
+    .service-item, .portfolio-item {
+      background: var(--glass-bg); /* Use glass background */
+      backdrop-filter: blur(8px); /* More blur */
+      border-radius: 20px;
+      padding: 35px; /* More padding */
+      box-shadow: 0 15px 35px rgba(0,0,0,0.4);
+      transition: all 0.5s ease;
+      border: 1px solid var(--glass-border); /* Use glass border */
+      position: relative;
+      overflow: hidden;
+      color: var(--white); /* Use white for better contrast */
+    }
+
+     .service-item:hover, .portfolio-item:hover {
+      transform: translateY(-12px) scale(1.04); /* More pronounced hover */
+      box-shadow: 0 25px 45px rgba(0,0,0,0.5);
+      background: rgba(255, 255, 255, 0.12); /* More visible on hover */
+    }
+
+    .service-image, .portfolio-image {
+      width: 100%;
+      height: 250px; /* Larger images */
+      background-size: cover;
+      background-position: center;
+      border-radius: 15px;
+      margin-bottom: 20px;
+      transition: transform 0.5s ease;
+      filter: brightness(0.7); /* Darker initial brightness */
+    }
+
+    .service-item:hover .service-image,
+    .portfolio-item:hover .portfolio-image {
+      transform: scale(1.15); /* More pronounced zoom */
+      filter: brightness(1); /* Full brightness on hover */
+    }
+
+    .service-item i, .portfolio-item i {
+      font-size: 3.2rem; /* Larger icons */
+      color: var(--accent-color);
+      margin-bottom: 15px;
+      display: block;
+      text-shadow: 0 3px 8px rgba(0,0,0,0.3);
+    }
+
+    .service-item strong, .portfolio-item strong {
+      display: block;
+      font-size: 1.8rem; /* Larger font */
+      margin-bottom: 1.2rem;
+      color: var(--accent-color);
+      position: relative;
+    }
+
+    .tech-stack {
+      display: flex;
+      gap: 8px; /* Smaller gap */
+      margin-top: 20px; /* More margin */
+      flex-wrap: wrap;
+    }
+
+    .tech-badge {
+      padding: 6px 18px; /* More padding */
+      background: rgba(255,255,255,0.15); /* More visible badge */
+      border-radius: 25px; /* More rounded */
+      font-size: 1rem; /* Larger font */
+      color: var(--white); /* Use white for better contrast */
+      border: 1px solid rgba(255,255,255,0.2);
+    }
+
+    .testimonial-section {
+      background: rgba(255, 255, 255, 0.08); /* Slightly more visible glass */
+        backdrop-filter: blur(8px); /* More blur */
+      color: white;
+      padding: 100px 20px; /* More padding */
+      margin: 100px auto; /* More margin */
+      border-radius: 30px;
+      box-shadow: 0 25px 50px rgba(0,0,0,0.4);
+      position: relative;
+      overflow: hidden;
+      border: 5px solid var(--secondary-accent-color); /* Add border */
+    }
+
+    .testimonial-section::before {
+       content: '';
+      position: absolute;
+      top: -30%; /* Adjust position */
+      right: -30%; /* Adjust position */
+      width: 160%; /* Adjust size */
+      height: 160%; /* Adjust size */
+      background: radial-gradient(circle at 85% 25%, rgba(255,255,255,0.15) 0%, transparent 40%); /* Adjust opacity and size */
+      animation: gradientRotate 25s linear infinite; /* Adjust duration */
+       z-index: 0;
+    }
+
+    @keyframes gradientRotate {
+        0% { transform: rotate(0deg); }
+        100% { transform: rotate(360deg); }
+    }
+
+    .testimonial-section h2 {
+        color: var(--white);
+         z-index: 1;
+         position: relative;
+    }
+
+    .testimonial-container {
+      max-width: 1100px; /* Wider */
+      margin: 50px auto 0 auto; /* More margin */
+      display: flex;
+      gap: 40px; /* More gap */
+      overflow-x: auto;
+      padding: 20px;
+      scroll-snap-type: x mandatory;
+      -webkit-overflow-scrolling: touch;
+       z-index: 1;
+         position: relative;
+    }
+
+    .testimonial-container::-webkit-scrollbar {
+        height: 10px; /* Thicker scrollbar */
+    }
+
+    .testimonial-container::-webkit-scrollbar-track {
+        background: rgba(255,255,255,0.15); /* More visible track */
+        border-radius: 10px;
+    }
+
+    .testimonial-container::-webkit-scrollbar-thumb {
+        background: var(--accent-color);
+        border-radius: 10px;
+    }
+
+    .testimonial-card {
+      min-width: 380px; /* Wider */
+      flex-shrink: 0;
+      background: var(--glass-bg); /* Use glass background */
+      backdrop-filter: blur(8px); /* Consistent blur */
+      padding: 35px; /* More padding */
+      border-radius: 20px;
+      scroll-snap-align: start;
+      border: 1px solid var(--glass-border); /* Use glass border */
+      box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+    }
+
+    .testimonial-avatar {
+      width: 80px; /* Larger avatar */
+      height: 80px; /* Larger avatar */
+      border-radius: 50%;
+      margin-bottom: 20px; /* More margin */
+      border: 5px solid var(--accent-color); /* Thicker border */
+      object-fit: cover;
+    }
+
+    .testimonial-card p {
+      font-size: 1.2rem; /* Larger font */
+      margin-bottom: 20px; /* More margin */
+      color: var(--white); /* Use white for better contrast */
+    }
+
+    .testimonial-card strong {
+      font-weight: 600;
+      color: var(--white);
+      font-size: 1.1rem; /* Slightly larger name */
+    }
+
+    .cta-section {
+      text-align: center;
+      padding: 100px 20px; /* More padding */
+      background: rgba(255, 255, 255, 0.08); /* Slightly more visible glass */
+        backdrop-filter: blur(8px); /* More blur */
+      border-radius: 20px;
+      margin: 100px auto; /* More margin */
+      box-shadow: 0 25px 50px rgba(0,0,0,0.4);
+      color: var(--white);
+      border: 5px solid var(--secondary-accent-color); /* Add border */
+    }
+
+    .cta-section h2 {
+        color: var(--white);
+    }
+
+    .cta-button {
+      display: inline-block;
+      padding: 18px 50px; /* More padding */
+      background: var(--accent-color);
+      color: white;
+      border-radius: 35px; /* More rounded */
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 1.2rem; /* Larger font */
+      margin-top: 30px;
+      transition: all 0.3s ease;
+      box-shadow: 0 12px 25px rgba(157,78,221,0.4);
+    }
+
+    .cta-button:hover {
+      transform: translateY(-8px) scale(1.06); /* More pronounced hover */
+      box-shadow: 0 20px 40px rgba(157,78,221,0.5);
+      background: var(--primary-color);
+    }
+
+    #contact {
+        background: rgba(255, 255, 255, 0.08); /* Slightly more visible glass */
+        backdrop-filter: blur(8px); /* More blur */
+        border-radius: 20px;
+        margin: 80px auto;
+        padding: 50px 30px; /* More padding */
+        box-shadow: 0 15px 35px rgba(0,0,0,0.4);
+        border: 1px solid rgba(255,255,255,0.15); /* More visible border */
+    }
+
+    #contact h2 {
+        color: #0E2148;
+    }
+
+    .contact-info {
+      display: flex;
+      flex-direction: column;
+      gap: 25px; /* More gap */
+      max-width: 700px; /* Wider */
+      margin: 40px auto 0 auto; /* More margin */
+    }
+
+    .contact-item {
+      display: flex;
+      align-items: center;
+      gap: 20px; /* More gap */
+      padding: 20px; /* More padding */
+      background: var(--glass-bg); /* Use glass background */
+      border-radius: 15px; /* More rounded */
+      transition: transform 0.3s ease;
+      border: 1px solid var(--glass-border); /* Use glass border */
+      color: var(--white); /* Use white for better contrast */
+    }
+
+    .contact-item:hover {
+      transform: translateX(15px) scale(1.02); /* More pronounced hover */
+      background: rgba(255,255,255,0.12); /* More visible on hover */
+    }
+
+    .contact-item i {
+      font-size: 1.8rem; /* Larger icons */
+      color: #17355c;
+    }
+
+    .contact-item a {
+        color: var(--white); /* Use white for better contrast */
+        font-weight: 400;
+         position: relative;
+    }
+
+     .contact-item a::after {
+      content: '';
+      position: absolute;
+      bottom: -3px; /* Adjust position */
+      left: 0;
+      width: 0;
+      height: 3px; /* Thicker */
+      background: #17355c;
+      transition: width 0.3s ease;
+    }
+
+    .contact-item a:hover::after {
+      width: 100%;
+    }
+
+    footer {
+      background: var(--dark-bg); /* Use darker background */
+      color: #a0a0a0;
+      text-align: center;
+      padding: 50px; /* More padding */
+      font-size: 15px; /* Slightly larger font */
+      position: relative;
+      overflow: hidden;
+    }
+
+    footer::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 6px; /* Thicker */
+      background: linear-gradient(90deg, var(--secondary-color), var(--accent-color), var(--primary-color));
+    }
+
+    @keyframes fadeInDown {
+      from {
+        opacity: 0;
+        transform: translateY(-40px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(40px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .navbar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      background: rgba(36, 0, 70, 0.8); /* Dark purple with transparency */
+      backdrop-filter: blur(5px);
+      z-index: 1000;
+      padding: 15px 20px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+    }
+
+    .navbar .container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      max-width: 1200px;
+      margin: auto;
+    }
+
+    .navbar .logo {
+      font-size: 1.8rem;
+      font-weight: 700;
+      color: var(--accent-color);
+      text-decoration: none;
+    }
+
+    .navbar .nav-links {
+      list-style: none;
+      display: flex;
+      gap: 25px;
+    }
+
+    .navbar .nav-links a {
+      color: var(--white);
+      text-decoration: none;
+      font-weight: 500;
+      transition: color 0.3s ease;
+      position: relative;
+    }
+
+    .navbar .nav-links a::after {
+      content: '';
+      position: absolute;
+      bottom: -5px;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: var(--accent-color);
+      transition: width 0.3s ease;
+    }
+
+    .navbar .nav-links a:hover::after {
+      width: 100%;
+    }
+
+    @media (max-width: 768px) {
+      header {
+          padding: 80px 20px 50px 20px; /* Adjust padding */
+          min-height: auto;
+      }
+
+      header h1 {
+        font-size: 3.5rem; /* Adjust font size */
+      }
+      
+      header p {
+          font-size: 1.3rem; /* Adjust font size */
+          margin-bottom: 30px;
+      }
+
+      .stats-container {
+        flex-direction: column;
+        gap: 20px;
+      }
+
+      .stat-item {
+        min-width: 100%;
+        flex-basis: auto;
+        padding: 20px; /* Adjust padding */
+      }
+
+      .stat-number {
+          font-size: 2.5rem; /* Adjust font size */
+      }
+
+      .stat-label {
+          font-size: 1.1rem; /* Adjust font size */
+      }
+
+      .hero-image {
+        display: none;
+      }
+
+      section {
+        padding: 80px 20px; /* Adjust padding */
+      }
+
+      h2 {
+          font-size: 2.8rem; /* Adjust font size */
+      }
+
+      #about p {
+          font-size: 1.1rem; /* Adjust font size */
+      }
+      
+      .services, .portfolio {
+        grid-template-columns: 1fr;
+        gap: 30px;
+      }
+
+      .service-item, .portfolio-item {
+        padding: 25px;
+      }
+
+      .service-image, .portfolio-image {
+          height: 200px; /* Adjust height */
+      }
+
+       .service-item i, .portfolio-item i {
+          font-size: 2.2rem; /* Adjust font size */
+       }
+
+       .service-item strong, .portfolio-item strong {
+          font-size: 1.5rem; /* Adjust font size */
+       }
+
+      .testimonial-section {
+          padding: 60px 20px; /* Adjust padding */
+          margin: 80px auto; /* Adjust margin */
+      }
+
+      .testimonial-container {
+        padding: 10px 0;
+        gap: 20px;
+      }
+
+      .testimonial-card {
+        min-width: 280px;
+        padding: 20px;
+      }
+
+      .testimonial-avatar {
+          width: 60px; /* Adjust size */
+          height: 60px; /* Adjust size */
+      }
+
+      .testimonial-card p {
+          font-size: 1.1rem; /* Adjust font size */
+      }
+
+      .cta-section {
+          padding: 80px 20px; /* Adjust padding */
+          margin: 80px auto; /* Adjust margin */
+      }
+
+      .cta-button {
+          padding: 15px 40px; /* Adjust padding */
+          font-size: 1rem; /* Adjust font size */
+      }
+
+       #contact {
+          padding: 40px 20px; /* Adjust padding */
+          margin: 80px auto; /* Adjust margin */
+      }
+
+      .contact-info {
+          gap: 20px;
+      }
+
+      .contact-item {
+          padding: 15px; /* Adjust padding */
+      }
+
+       .contact-item i {
+          font-size: 1.6rem; /* Adjust font size */
+       }
+
+       footer {
+           padding: 40px; /* Adjust padding */
+       }
+
+       .navbar .nav-links {
+           display: none; /* Hide nav links on small screens for now */
+       }
+
+       .navbar .container {
+           justify-content: center;
+       }
+
+       body {
+           padding-top: 60px; /* Adjust padding for smaller navbar on mobile */
+       }
+    }
   </style>
 </head>
 <body>
+  <div class="navbar">
+    <div class="container">
+      <a href="#" class="logo">Oblivious Dev</a>
+      <ul class="nav-links">
+        <li><a href="#about">Tentang Kami</a></li>
+        <li><a href="#services">Layanan</a></li>
+        <li><a href="#portfolio">Portofolio</a></li>
+        <li><a href="#contact">Kontak</a></li>
+      </ul>
+    </div>
+  </div>
+
   <header>
-    <h1>Oblivious Dev</h1>
-    <p>Solusi Teknologi Fleksibel untuk UMKM & Startup</p>
+    <div class="hero-content">
+      <h1>Oblivious Dev</h1>
+      <p>Solusi Teknologi Fleksibel untuk UMKM & Startup</p>
+      <div class="stats-container">
+        <div class="stat-item" data-aos="fade-up" data-aos-delay="100">
+          <div class="stat-number">50+</div>
+          <div class="stat-label">Proyek Selesai</div>
+        </div>
+        <div class="stat-item" data-aos="fade-up" data-aos-delay="200">
+          <div class="stat-number">30+</div>
+          <div class="stat-label">Klien Puas</div>
+        </div>
+        <div class="stat-item" data-aos="fade-up" data-aos-delay="300">
+          <div class="stat-number">5+</div>
+          <div class="stat-label">Tahun Pengalaman</div>
+        </div>
+      </div>
+    </div>
+    <div class="hero-image" data-aos="fade-left"></div>
+    <div class="scroll-indicator" id="scrollDownBtn">
+      <i class="fas fa-chevron-down"></i>
+    </div>
   </header>
 
-  <section id="about">
+  <section id="about" data-aos="fade-up">
     <h2>Tentang Kami</h2>
     <p>Kami membantu UMKM dan startup melakukan digitalisasi proses bisnis melalui sistem informasi custom dan desain antarmuka yang profesional. Berpengalaman di bidang IT implementasi dan UI/UX design, kami siap menjadi mitra teknologi Anda.</p>
   </section>
 
   <section id="services">
-    <h2>Layanan</h2>
+    <h2 data-aos="fade-up">Layanan</h2>
     <div class="services">
-      <div class="service-item">
+      <div class="service-item" data-aos="fade-up" data-aos-delay="100">
+        <div class="service-image" style="background-image: url('https://images.unsplash.com/photo-1460925895917-afdab827c52f?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80')"></div>
+        <i class="fas fa-laptop-code"></i>
         <strong>Sistem Informasi</strong>
         <p>Pengembangan sistem seperti inventory, CRM, dan tiket pengaduan berbasis kebutuhan.</p>
+        <div class="tech-stack">
+          <span class="tech-badge">React</span>
+          <span class="tech-badge">Node.js</span>
+          <span class="tech-badge">MongoDB</span>
+        </div>
       </div>
-      <div class="service-item">
+      <div class="service-item" data-aos="fade-up" data-aos-delay="200">
+        <div class="service-image" style="background-image: url('https://images.unsplash.com/photo-1561070791-2526d30994b5?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80')"></div>
+        <i class="fas fa-paint-brush"></i>
         <strong>UI/UX & Web Design</strong>
         <p>Desain antarmuka untuk aplikasi mobile maupun web agar lebih profesional dan mudah digunakan.</p>
+        <div class="tech-stack">
+          <span class="tech-badge">Figma</span>
+          <span class="tech-badge">Adobe XD</span>
+          <span class="tech-badge">Sketch</span>
+        </div>
       </div>
-      <div class="service-item">
+      <div class="service-item" data-aos="fade-up" data-aos-delay="300">
+        <div class="service-image" style="background-image: url('https://images.unsplash.com/photo-1552581234-26160f608093?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80')"></div>
+        <i class="fas fa-headset"></i>
         <strong>Implementasi & Support</strong>
         <p>Dukungan teknis untuk memastikan sistem berjalan sesuai ekspektasi.</p>
+        <div class="tech-stack">
+          <span class="tech-badge">AWS</span>
+          <span class="tech-badge">Docker</span>
+          <span class="tech-badge">CI/CD</span>
+        </div>
       </div>
     </div>
   </section>
 
   <section id="portfolio">
-    <h2>Portofolio</h2>
+    <h2 data-aos="fade-up">Portofolio</h2>
     <div class="portfolio">
-      <div class="portfolio-item">
+      <div class="portfolio-item" data-aos="fade-up" data-aos-delay="100">
+        <div class="portfolio-image" style="background-image: url('https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80')"></div>
+        <i class="fas fa-boxes"></i>
         <strong>Sistem Inventaris Toko</strong>
         <p>Aplikasi web untuk manajemen stok, notifikasi restock, dan laporan penjualan.</p>
+        <div class="tech-stack">
+          <span class="tech-badge">Vue.js</span>
+          <span class="tech-badge">Firebase</span>
+          <span class="tech-badge">PWA</span>
+        </div>
       </div>
-      <div class="portfolio-item">
+      <div class="portfolio-item" data-aos="fade-up" data-aos-delay="200">
+        <div class="portfolio-image" style="background-image: url('https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80')"></div>
+        <i class="fas fa-ticket-alt"></i>
         <strong>Dashboard Pengaduan</strong>
         <p>Portal pengaduan internal untuk lembaga pendidikan.</p>
+        <div class="tech-stack">
+          <span class="tech-badge">React</span>
+          <span class="tech-badge">GraphQL</span>
+          <span class="tech-badge">PostgreSQL</span>
+        </div>
       </div>
-      <div class="portfolio-item">
+      <div class="portfolio-item" data-aos="fade-up" data-aos-delay="300">
+        <div class="portfolio-image" style="background-image: url('https://images.unsplash.com/photo-1556742044-3c52d6e88c62?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80')"></div>
+        <i class="fas fa-cash-register"></i>
         <strong>Desain UI Aplikasi Kasir</strong>
         <p>Desain antarmuka untuk aplikasi kasir berbasis mobile, fokus pada alur pengguna yang sederhana.</p>
+        <div class="tech-stack">
+          <span class="tech-badge">Flutter</span>
+          <span class="tech-badge">Firebase</span>
+          <span class="tech-badge">Material Design</span>
+        </div>
       </div>
     </div>
   </section>
 
+  <section class="testimonial-section" data-aos="fade-up">
+    <h2 style="color: white;">Testimoni Klien</h2>
+    <div class="testimonial-container">
+      <div class="testimonial-card">
+        <img src="https://randomuser.me/api/portraits/men/1.jpg" alt="Client" class="testimonial-avatar">
+        <p>"Tim Oblivious Dev sangat profesional dan responsif. Hasil kerja mereka melebihi ekspektasi kami."</p>
+        <strong>- Ahmad Rizki, CEO TechStart</strong>
+      </div>
+      <div class="testimonial-card">
+        <img src="https://randomuser.me/api/portraits/women/1.jpg" alt="Client" class="testimonial-avatar">
+        <p>"Proses pengembangan yang transparan dan hasil yang memuaskan. Sangat merekomendasikan!"</p>
+        <strong>- Sarah Wijaya, Founder EduTech</strong>
+      </div>
+      <div class="testimonial-card">
+        <img src="https://randomuser.me/api/portraits/men/2.jpg" alt="Client" class="testimonial-avatar">
+        <p>"Sistem yang dikembangkan membantu kami meningkatkan efisiensi operasional secara signifikan."</p>
+        <strong>- Budi Santoso, CTO RetailPro</strong>
+      </div>
+    </div>
+  </section>
+
+  <section class="cta-section" data-aos="fade-up">
+    <h2>Siap untuk Memulai Proyek Anda?</h2>
+    <p>Konsultasikan kebutuhan digital Anda bersama kami</p>
+    <a href="#contact" class="cta-button">Hubungi Kami</a>
+  </section>
+
   <section id="contact">
-    <h2>Kontak</h2>
-    <p>Email: <a href="mailto:solusi.digital@email.com">solusi.digital@email.com</a></p>
-    <p>WhatsApp: <a href="https://wa.me/6281234567890">+62 812-3456-7890</a></p>
-    <p>LinkedIn: <a href="https://linkedin.com/in/namaanda">linkedin.com/in/namaanda</a></p>
+    <h2 data-aos="fade-up">Kontak</h2>
+    <div class="contact-info">
+      <div class="contact-item" data-aos="fade-up" data-aos-delay="100">
+        <i class="fas fa-envelope"></i>
+        <a href="mailto:harsadigitech@gmail.com">harsadigitech@gmail.com</a>
+      </div>
+      <div class="contact-item" data-aos="fade-up" data-aos-delay="200">
+        <i class="fab fa-whatsapp"></i>
+        <a href="https://wa.me/6285889429989">+62 858-8942-9989</a>
+      </div>
+      <div class="contact-item" data-aos="fade-up" data-aos-delay="300">
+        <i class="fab fa-linkedin"></i>
+        <a href="https://linkedin.com/in/namaanda">linkedin.com/in/namaanda</a>
+      </div>
+    </div>
   </section>
 
   <footer>
     &copy; 2025 Oblivious Dev. All rights reserved.
   </footer>
+
+  <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+  <script>
+    AOS.init({
+      duration: 1000,
+      once: true
+    });
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+            e.preventDefault();
+
+            document.querySelector(this.getAttribute('href')).scrollIntoView({
+                behavior: 'smooth'
+            });
+        });
+    });
+
+    // Smooth scroll for the scroll indicator button
+    document.getElementById('scrollDownBtn').addEventListener('click', function(e) {
+        e.preventDefault();
+        document.getElementById('about').scrollIntoView({
+            behavior: 'smooth'
+        });
+    });
+  </script>
 </body>
 </html>
