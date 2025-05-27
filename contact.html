@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Kontak - Oblivious Dev</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="navbar">
+    <div class="container">
+      <a href="index.html" class="logo">Oblivious Dev</a>
+      <ul class="nav-links">
+        <li><a href="about.html">Tentang Kami</a></li>
+        <li><a href="services.html">Layanan</a></li>
+        <li><a href="portfolio.html">Portofolio</a></li>
+        <li><a href="contact.html">Kontak</a></li>
+      </ul>
+    </div>
+  </div>
+
+  <section id="contact" class="page-section" data-aos="fade-up">
+    <div class="container">
+      <h2>Hubungi Kami</h2>
+      <div class="contact-info">
+        <div class="contact-item" data-aos="fade-up" data-aos-delay="100">
+          <i class="fas fa-envelope"></i>
+          <a href="mailto:harsadigitech@gmail.com">harsadigitech@gmail.com</a>
+        </div>
+        <div class="contact-item" data-aos="fade-up" data-aos-delay="200">
+          <i class="fab fa-whatsapp"></i>
+          <a href="https://wa.me/6285889429989">+62 858-8942-9989</a>
+        </div>
+        <div class="contact-item" data-aos="fade-up" data-aos-delay="300">
+          <i class="fab fa-linkedin"></i>
+          <a href="https://linkedin.com/in/namaanda">linkedin.com/in/namaanda</a>
+        </div>
+      </div>
+
+      <div class="contact-form" data-aos="fade-up" data-aos-delay="400">
+        <h3>Kirim Pesan</h3>
+        <form id="contactForm">
+          <div class="form-group">
+            <input type="text" id="name" name="name" placeholder="Nama Lengkap" required>
+          </div>
+          <div class="form-group">
+            <input type="email" id="email" name="email" placeholder="Email" required>
+          </div>
+          <div class="form-group">
+            <input type="text" id="subject" name="subject" placeholder="Subjek" required>
+          </div>
+          <div class="form-group">
+            <textarea id="message" name="message" placeholder="Pesan Anda" required></textarea>
+          </div>
+          <button type="submit" class="submit-btn">Kirim Pesan</button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    &copy; 2025 Oblivious Dev. All rights reserved.
+  </footer>
+
+  <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+  <script>
+    AOS.init({
+      duration: 1000,
+      once: true
+    });
+
+    document.getElementById('contactForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      // Tambahkan logika pengiriman form di sini
+      alert('Terima kasih! Pesan Anda telah terkirim.');
+      this.reset();
+    });
+  </script>
+</body>
+</html> 

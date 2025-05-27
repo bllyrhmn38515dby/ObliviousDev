@@ -7,6 +7,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
   <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+  <link rel="stylesheet" href="styles.css">
   <style>
     :root {
       --primary-color: #5a189a; /* Darker Purple */
@@ -713,12 +714,12 @@
 <body>
   <div class="navbar">
     <div class="container">
-      <a href="#" class="logo">Oblivious Dev</a>
+      <a href="index.html" class="logo">Oblivious Dev</a>
       <ul class="nav-links">
-        <li><a href="#about">Tentang Kami</a></li>
-        <li><a href="#services">Layanan</a></li>
-        <li><a href="#portfolio">Portofolio</a></li>
-        <li><a href="#contact">Kontak</a></li>
+        <li><a href="about.html">Tentang Kami</a></li>
+        <li><a href="services.html">Layanan</a></li>
+        <li><a href="portfolio.html">Portofolio</a></li>
+        <li><a href="contact.html">Kontak</a></li>
       </ul>
     </div>
   </div>
@@ -855,7 +856,7 @@
   <section class="cta-section" data-aos="fade-up">
     <h2>Siap untuk Memulai Proyek Anda?</h2>
     <p>Konsultasikan kebutuhan digital Anda bersama kami</p>
-    <a href="#contact" class="cta-button">Hubungi Kami</a>
+    <a href="contact.html" class="cta-button">Hubungi Kami</a>
   </section>
 
   <section id="contact">
@@ -887,22 +888,11 @@
       once: true
     });
 
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-        anchor.addEventListener('click', function (e) {
-            e.preventDefault();
-
-            document.querySelector(this.getAttribute('href')).scrollIntoView({
-                behavior: 'smooth'
-            });
-        });
-    });
-
-    // Smooth scroll for the scroll indicator button
     document.getElementById('scrollDownBtn').addEventListener('click', function(e) {
-        e.preventDefault();
-        document.getElementById('about').scrollIntoView({
-            behavior: 'smooth'
-        });
+      e.preventDefault();
+      document.querySelector('.cta-section').scrollIntoView({
+        behavior: 'smooth'
+      });
     });
   </script>
 </body>
