@@ -1,0 +1,541 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Blog - Oblivious Dev</title>
+  <link rel="icon" type="image/png" href="ICONODcrop.png">
+  <link rel="manifest" href="manifest.json">
+  <meta name="theme-color" content="#7c3aed">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    .blog-hero {
+      background: var(--glass-bg);
+      border-radius: 20px;
+      margin: 40px auto;
+      padding: 60px 30px;
+      text-align: center;
+      box-shadow: 0 15px 35px rgba(0,0,0,0.4);
+      border: 1px solid var(--glass-border);
+    }
+
+    .blog-hero h1 {
+      font-size: 3rem;
+      color: var(--text-color);
+      margin-bottom: 20px;
+    }
+
+    .blog-hero p {
+      font-size: 1.2rem;
+      color: var(--text-color);
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    .search-container {
+      max-width: 600px;
+      margin: 40px auto;
+      position: relative;
+    }
+
+    .search-input {
+      width: 100%;
+      padding: 15px 20px;
+      padding-left: 50px;
+      border: 1px solid var(--glass-border);
+      border-radius: 30px;
+      background: var(--glass-bg);
+      color: var(--text-color);
+      font-size: 1.1rem;
+      transition: all 0.3s ease;
+    }
+
+    .search-input:focus {
+      outline: none;
+      border-color: var(--primary-color);
+      box-shadow: 0 0 0 2px rgba(124, 58, 237, 0.2);
+    }
+
+    .search-icon {
+      position: absolute;
+      left: 20px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: var(--text-color);
+      opacity: 0.5;
+    }
+
+    .blog-container {
+      display: grid;
+      grid-template-columns: 2fr 1fr;
+      gap: 40px;
+      margin: 40px 0;
+    }
+
+    .blog-posts {
+      display: grid;
+      gap: 30px;
+    }
+
+    .blog-post {
+      background: var(--glass-bg);
+      border-radius: 20px;
+      overflow: hidden;
+      box-shadow: 0 15px 35px rgba(0,0,0,0.4);
+      border: 1px solid var(--glass-border);
+      transition: all 0.3s ease;
+    }
+
+    .blog-post:hover {
+      transform: translateY(-10px);
+    }
+
+    .post-image {
+      width: 100%;
+      height: 300px;
+      object-fit: cover;
+    }
+
+    .post-content {
+      padding: 30px;
+    }
+
+    .post-category {
+      color: var(--primary-color);
+      font-size: 0.9rem;
+      margin-bottom: 10px;
+      display: block;
+    }
+
+    .post-title {
+      font-size: 1.8rem;
+      color: var(--text-color);
+      margin-bottom: 15px;
+    }
+
+    .post-excerpt {
+      color: var(--text-color);
+      line-height: 1.6;
+      margin-bottom: 20px;
+      opacity: 0.8;
+    }
+
+    .post-meta {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      color: var(--text-color);
+      opacity: 0.7;
+      font-size: 0.9rem;
+    }
+
+    .post-meta i {
+      margin-right: 5px;
+    }
+
+    .read-more {
+      display: inline-block;
+      color: var(--primary-color);
+      text-decoration: none;
+      font-weight: 600;
+      margin-top: 20px;
+      transition: all 0.3s ease;
+    }
+
+    .read-more:hover {
+      color: var(--secondary-color);
+    }
+
+    .blog-sidebar {
+      position: sticky;
+      top: 100px;
+    }
+
+    .sidebar-widget {
+      background: var(--glass-bg);
+      border-radius: 20px;
+      padding: 30px;
+      margin-bottom: 30px;
+      box-shadow: 0 15px 35px rgba(0,0,0,0.4);
+      border: 1px solid var(--glass-border);
+    }
+
+    .widget-title {
+      color: var(--text-color);
+      font-size: 1.5rem;
+      margin-bottom: 20px;
+      padding-bottom: 10px;
+      border-bottom: 2px solid var(--primary-color);
+    }
+
+    .categories-list {
+      list-style: none;
+      padding: 0;
+    }
+
+    .category-item {
+      margin-bottom: 10px;
+    }
+
+    .category-link {
+      color: var(--text-color);
+      text-decoration: none;
+      display: flex;
+      justify-content: space-between;
+      padding: 10px;
+      border-radius: 10px;
+      transition: all 0.3s ease;
+    }
+
+    .category-link:hover {
+      background: rgba(124, 58, 237, 0.1);
+      color: var(--primary-color);
+    }
+
+    .recent-posts {
+      list-style: none;
+      padding: 0;
+    }
+
+    .recent-post {
+      display: flex;
+      gap: 15px;
+      margin-bottom: 20px;
+    }
+
+    .recent-post-image {
+      width: 80px;
+      height: 80px;
+      border-radius: 10px;
+      object-fit: cover;
+    }
+
+    .recent-post-content h4 {
+      color: var(--text-color);
+      margin-bottom: 5px;
+      font-size: 1rem;
+    }
+
+    .recent-post-date {
+      color: var(--text-color);
+      opacity: 0.7;
+      font-size: 0.9rem;
+    }
+
+    .tags-cloud {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .tag {
+      background: rgba(124, 58, 237, 0.1);
+      color: var(--primary-color);
+      padding: 5px 15px;
+      border-radius: 20px;
+      font-size: 0.9rem;
+      text-decoration: none;
+      transition: all 0.3s ease;
+    }
+
+    .tag:hover {
+      background: var(--primary-color);
+      color: white;
+    }
+
+    .pagination {
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+      margin: 40px 0;
+    }
+
+    .page-link {
+      width: 40px;
+      height: 40px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: var(--glass-bg);
+      border: 1px solid var(--glass-border);
+      border-radius: 10px;
+      color: var(--text-color);
+      text-decoration: none;
+      transition: all 0.3s ease;
+    }
+
+    .page-link:hover,
+    .page-link.active {
+      background: var(--primary-color);
+      color: white;
+      border-color: var(--primary-color);
+    }
+
+    @media (max-width: 768px) {
+      .blog-container {
+        grid-template-columns: 1fr;
+      }
+
+      .blog-hero h1 {
+        font-size: 2.5rem;
+      }
+
+      .blog-hero p {
+        font-size: 1.1rem;
+      }
+
+      .post-image {
+        height: 200px;
+      }
+
+      .post-title {
+        font-size: 1.5rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="loading-overlay">
+    <div class="loader"></div>
+  </div>
+  <div class="progress-bar"></div>
+
+  <div class="navbar">
+    <div class="container">
+      <a href="index.html" class="logo">
+        <img src="ICONODcrop.png" alt="Oblivious Dev Logo">
+        Oblivious Dev
+      </a>
+      <ul class="nav-links">
+        <li><a href="about.html">Tentang Kami</a></li>
+        <li><a href="services.html">Layanan</a></li>
+        <li><a href="portfolio.html">Portofolio</a></li>
+        <li><a href="blog.html" class="active">Blog</a></li>
+        <li><a href="contact.html">Kontak</a></li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="page-section">
+    <section class="blog-hero" data-aos="fade-up">
+      <h1>Blog Kami</h1>
+      <p>Artikel terbaru seputar teknologi, pengembangan web, dan tren digital terkini.</p>
+    </section>
+
+    <div class="search-container" data-aos="fade-up">
+      <i class="fas fa-search search-icon"></i>
+      <input type="text" class="search-input" placeholder="Cari artikel...">
+    </div>
+
+    <div class="blog-container">
+      <div class="blog-posts">
+        <article class="blog-post" data-aos="fade-up">
+          <img src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Web Development" class="post-image">
+          <div class="post-content">
+            <span class="post-category">Web Development</span>
+            <h2 class="post-title">Tren Pengembangan Web di Tahun 2024</h2>
+            <p class="post-excerpt">Jelajahi tren terbaru dalam pengembangan web yang akan mendominasi tahun 2024, dari AI hingga WebAssembly.</p>
+            <div class="post-meta">
+              <span><i class="far fa-calendar"></i> 15 Maret 2024</span>
+              <span><i class="far fa-user"></i> Admin</span>
+              <span><i class="far fa-comments"></i> 5 Komentar</span>
+            </div>
+            <a href="#" class="read-more">Baca Selengkapnya <i class="fas fa-arrow-right"></i></a>
+          </div>
+        </article>
+
+        <article class="blog-post" data-aos="fade-up" data-aos-delay="100">
+          <img src="https://images.unsplash.com/photo-1555949963-ff9fe0c870eb?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Mobile Development" class="post-image">
+          <div class="post-content">
+            <span class="post-category">Mobile Development</span>
+            <h2 class="post-title">Flutter vs React Native: Mana yang Lebih Baik?</h2>
+            <p class="post-excerpt">Perbandingan mendalam antara Flutter dan React Native untuk pengembangan aplikasi mobile cross-platform.</p>
+            <div class="post-meta">
+              <span><i class="far fa-calendar"></i> 10 Maret 2024</span>
+              <span><i class="far fa-user"></i> Admin</span>
+              <span><i class="far fa-comments"></i> 8 Komentar</span>
+            </div>
+            <a href="#" class="read-more">Baca Selengkapnya <i class="fas fa-arrow-right"></i></a>
+          </div>
+        </article>
+
+        <article class="blog-post" data-aos="fade-up" data-aos-delay="200">
+          <img src="https://images.unsplash.com/photo-1550751827-4bd374c3f58b?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="AI & Machine Learning" class="post-image">
+          <div class="post-content">
+            <span class="post-category">AI & Machine Learning</span>
+            <h2 class="post-title">Integrasi AI dalam Pengembangan Web Modern</h2>
+            <p class="post-excerpt">Bagaimana kecerdasan buatan mengubah cara kita mengembangkan dan mengoptimalkan website.</p>
+            <div class="post-meta">
+              <span><i class="far fa-calendar"></i> 5 Maret 2024</span>
+              <span><i class="far fa-user"></i> Admin</span>
+              <span><i class="far fa-comments"></i> 12 Komentar</span>
+            </div>
+            <a href="#" class="read-more">Baca Selengkapnya <i class="fas fa-arrow-right"></i></a>
+          </div>
+        </article>
+
+        <div class="pagination">
+          <a href="#" class="page-link active">1</a>
+          <a href="#" class="page-link">2</a>
+          <a href="#" class="page-link">3</a>
+          <a href="#" class="page-link"><i class="fas fa-chevron-right"></i></a>
+        </div>
+      </div>
+
+      <div class="blog-sidebar">
+        <div class="sidebar-widget" data-aos="fade-left">
+          <h3 class="widget-title">Kategori</h3>
+          <ul class="categories-list">
+            <li class="category-item">
+              <a href="#" class="category-link">
+                Web Development
+                <span>(15)</span>
+              </a>
+            </li>
+            <li class="category-item">
+              <a href="#" class="category-link">
+                Mobile Development
+                <span>(8)</span>
+              </a>
+            </li>
+            <li class="category-item">
+              <a href="#" class="category-link">
+                UI/UX Design
+                <span>(12)</span>
+              </a>
+            </li>
+            <li class="category-item">
+              <a href="#" class="category-link">
+                AI & Machine Learning
+                <span>(6)</span>
+              </a>
+            </li>
+            <li class="category-item">
+              <a href="#" class="category-link">
+                Cloud Computing
+                <span>(9)</span>
+              </a>
+            </li>
+          </ul>
+        </div>
+
+        <div class="sidebar-widget" data-aos="fade-left" data-aos-delay="100">
+          <h3 class="widget-title">Artikel Terbaru</h3>
+          <ul class="recent-posts">
+            <li class="recent-post">
+              <img src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Recent Post" class="recent-post-image">
+              <div class="recent-post-content">
+                <h4>Tren Pengembangan Web di Tahun 2024</h4>
+                <span class="recent-post-date">15 Maret 2024</span>
+              </div>
+            </li>
+            <li class="recent-post">
+              <img src="https://images.unsplash.com/photo-1555949963-ff9fe0c870eb?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Recent Post" class="recent-post-image">
+              <div class="recent-post-content">
+                <h4>Flutter vs React Native: Mana yang Lebih Baik?</h4>
+                <span class="recent-post-date">10 Maret 2024</span>
+              </div>
+            </li>
+            <li class="recent-post">
+              <img src="https://images.unsplash.com/photo-1550751827-4bd374c3f58b?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Recent Post" class="recent-post-image">
+              <div class="recent-post-content">
+                <h4>Integrasi AI dalam Pengembangan Web Modern</h4>
+                <span class="recent-post-date">5 Maret 2024</span>
+              </div>
+            </li>
+          </ul>
+        </div>
+
+        <div class="sidebar-widget" data-aos="fade-left" data-aos-delay="200">
+          <h3 class="widget-title">Tag Populer</h3>
+          <div class="tags-cloud">
+            <a href="#" class="tag">Web Development</a>
+            <a href="#" class="tag">JavaScript</a>
+            <a href="#" class="tag">React</a>
+            <a href="#" class="tag">Flutter</a>
+            <a href="#" class="tag">UI/UX</a>
+            <a href="#" class="tag">AI</a>
+            <a href="#" class="tag">Cloud</a>
+            <a href="#" class="tag">Mobile</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    &copy; 2024 Oblivious Dev. All rights reserved.
+  </footer>
+
+  <button class="theme-toggle" id="themeToggle" aria-label="Toggle Dark Mode">
+    <i class="fas fa-moon"></i>
+  </button>
+
+  <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+  <script>
+    // Loading Animation
+    window.addEventListener('load', () => {
+      const loadingOverlay = document.querySelector('.loading-overlay');
+      loadingOverlay.classList.add('hidden');
+    });
+
+    // Progress Bar
+    window.addEventListener('scroll', () => {
+      const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+      const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+      const scrolled = (winScroll / height) * 100;
+      document.querySelector('.progress-bar').style.width = scrolled + '%';
+    });
+
+    // AOS initialization
+    AOS.init({
+      duration: 1000,
+      once: true
+    });
+
+    // Theme Toggle
+    const themeToggle = document.getElementById('themeToggle');
+    const themeIcon = themeToggle.querySelector('i');
+    
+    const savedTheme = localStorage.getItem('theme');
+    if (savedTheme) {
+      document.documentElement.setAttribute('data-theme', savedTheme);
+      updateThemeIcon(savedTheme);
+    }
+
+    themeToggle.addEventListener('click', () => {
+      const currentTheme = document.documentElement.getAttribute('data-theme');
+      const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+      
+      document.documentElement.setAttribute('data-theme', newTheme);
+      localStorage.setItem('theme', newTheme);
+      updateThemeIcon(newTheme);
+    });
+
+    function updateThemeIcon(theme) {
+      themeIcon.className = theme === 'dark' ? 'fas fa-sun' : 'fas fa-moon';
+    }
+
+    // Search Functionality
+    const searchInput = document.querySelector('.search-input');
+    searchInput.addEventListener('input', (e) => {
+      const searchTerm = e.target.value.toLowerCase();
+      const blogPosts = document.querySelectorAll('.blog-post');
+      
+      blogPosts.forEach(post => {
+        const title = post.querySelector('.post-title').textContent.toLowerCase();
+        const excerpt = post.querySelector('.post-excerpt').textContent.toLowerCase();
+        
+        if (title.includes(searchTerm) || excerpt.includes(searchTerm)) {
+          post.style.display = 'block';
+        } else {
+          post.style.display = 'none';
+        }
+      });
+    });
+  </script>
+</body>
+</html> 

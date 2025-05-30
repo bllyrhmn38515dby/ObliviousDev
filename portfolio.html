@@ -5,12 +5,222 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Portofolio - Oblivious Dev</title>
   <link rel="icon" type="image/png" href="ICONODcrop.png">
+  <link rel="manifest" href="manifest.json">
+  <meta name="theme-color" content="#7c3aed">
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
   <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
   <link rel="stylesheet" href="styles.css">
+  <style>
+    .portfolio-hero {
+      background: var(--glass-bg);
+      border-radius: 20px;
+      margin: 40px auto;
+      padding: 60px 30px;
+      text-align: center;
+      box-shadow: 0 15px 35px rgba(0,0,0,0.4);
+      border: 1px solid var(--glass-border);
+    }
+
+    .portfolio-hero h1 {
+      font-size: 3rem;
+      color: var(--text-color);
+      margin-bottom: 20px;
+    }
+
+    .portfolio-hero p {
+      font-size: 1.2rem;
+      color: var(--text-color);
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    .filter-buttons {
+      display: flex;
+      justify-content: center;
+      gap: 15px;
+      margin: 40px 0;
+      flex-wrap: wrap;
+    }
+
+    .filter-button {
+      background: var(--glass-bg);
+      border: 1px solid var(--glass-border);
+      color: var(--text-color);
+      padding: 10px 20px;
+      border-radius: 30px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .filter-button.active,
+    .filter-button:hover {
+      background: var(--primary-color);
+      color: white;
+      border-color: var(--primary-color);
+    }
+
+    .portfolio-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 30px;
+      margin: 40px 0;
+    }
+
+    .portfolio-item {
+      background: var(--glass-bg);
+      border-radius: 20px;
+      overflow: hidden;
+      box-shadow: 0 15px 35px rgba(0,0,0,0.4);
+      border: 1px solid var(--glass-border);
+      transition: all 0.3s ease;
+    }
+
+    .portfolio-item:hover {
+      transform: translateY(-10px);
+    }
+
+    .portfolio-image {
+      width: 100%;
+      height: 250px;
+      object-fit: cover;
+    }
+
+    .portfolio-content {
+      padding: 25px;
+    }
+
+    .portfolio-category {
+      color: var(--primary-color);
+      font-size: 0.9rem;
+      margin-bottom: 10px;
+      display: block;
+    }
+
+    .portfolio-title {
+      font-size: 1.5rem;
+      color: var(--text-color);
+      margin-bottom: 15px;
+    }
+
+    .portfolio-description {
+      color: var(--text-color);
+      line-height: 1.6;
+      margin-bottom: 20px;
+    }
+
+    .portfolio-tags {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .portfolio-tag {
+      background: rgba(124, 58, 237, 0.1);
+      color: var(--primary-color);
+      padding: 5px 15px;
+      border-radius: 20px;
+      font-size: 0.9rem;
+    }
+
+    .portfolio-links {
+      display: flex;
+      gap: 15px;
+      margin-top: 20px;
+    }
+
+    .portfolio-link {
+      color: var(--primary-color);
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      transition: all 0.3s ease;
+    }
+
+    .portfolio-link:hover {
+      color: var(--secondary-color);
+    }
+
+    .stats-section {
+      margin: 60px 0;
+      text-align: center;
+    }
+
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 30px;
+      margin-top: 40px;
+    }
+
+    .stat-item {
+      background: var(--glass-bg);
+      border-radius: 20px;
+      padding: 30px;
+      box-shadow: 0 15px 35px rgba(0,0,0,0.4);
+      border: 1px solid var(--glass-border);
+    }
+
+    .stat-number {
+      font-size: 2.5rem;
+      color: var(--primary-color);
+      font-weight: 700;
+      margin-bottom: 10px;
+    }
+
+    .stat-label {
+      color: var(--text-color);
+      font-size: 1.1rem;
+    }
+
+    .cta-section {
+      text-align: center;
+      margin: 60px 0;
+    }
+
+    .cta-button {
+      display: inline-block;
+      background: var(--primary-color);
+      color: white;
+      padding: 15px 30px;
+      border-radius: 30px;
+      text-decoration: none;
+      font-weight: 600;
+      transition: all 0.3s ease;
+    }
+
+    .cta-button:hover {
+      background: var(--secondary-color);
+      transform: translateY(-3px);
+    }
+
+    @media (max-width: 768px) {
+      .portfolio-hero h1 {
+        font-size: 2.5rem;
+      }
+
+      .portfolio-hero p {
+        font-size: 1.1rem;
+      }
+
+      .filter-buttons {
+        gap: 10px;
+      }
+
+      .filter-button {
+        padding: 8px 15px;
+        font-size: 0.9rem;
+      }
+    }
+  </style>
 </head>
 <body>
+  <div class="loading-overlay">
+    <div class="loader"></div>
+  </div>
+  <div class="progress-bar"></div>
+
   <div class="navbar">
     <div class="container">
       <a href="index.html" class="logo">
@@ -20,62 +230,204 @@
       <ul class="nav-links">
         <li><a href="about.html">Tentang Kami</a></li>
         <li><a href="services.html">Layanan</a></li>
-        <li><a href="portfolio.html">Portofolio</a></li>
+        <li><a href="portfolio.html" class="active">Portofolio</a></li>
+        <li><a href="blog.html">Blog</a></li>
         <li><a href="contact.html">Kontak</a></li>
       </ul>
     </div>
   </div>
 
-  <section id="portfolio" class="page-section" data-aos="fade-up">
-    <div class="container">
-      <h2>Portofolio Kami</h2>
-      <div class="portfolio">
-        <div class="portfolio-item" data-aos="fade-up" data-aos-delay="100">
-          <div class="portfolio-image" style="background-image: url('https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80')"></div>
-          <i class="fas fa-boxes"></i>
-          <strong>Sistem Inventaris Toko</strong>
-          <p>Aplikasi web untuk manajemen stok, notifikasi restock, dan laporan penjualan.</p>
-          <div class="tech-stack">
-            <span class="tech-badge">Vue.js</span>
-            <span class="tech-badge">Firebase</span>
-            <span class="tech-badge">PWA</span>
+  <div class="page-section">
+    <section class="portfolio-hero" data-aos="fade-up">
+      <h1>Portofolio Kami</h1>
+      <p>Lihat proyek-proyek terbaik yang telah kami kerjakan untuk berbagai klien dari berbagai industri. Setiap proyek adalah bukti dedikasi kami dalam memberikan solusi digital yang inovatif.</p>
+    </section>
+
+    <div class="filter-buttons">
+      <button class="filter-button active" data-filter="all">Semua</button>
+      <button class="filter-button" data-filter="web">Website</button>
+      <button class="filter-button" data-filter="mobile">Mobile App</button>
+      <button class="filter-button" data-filter="ui">UI/UX Design</button>
+      <button class="filter-button" data-filter="ecommerce">E-commerce</button>
+    </div>
+
+    <div class="portfolio-grid">
+      <div class="portfolio-item" data-category="web" data-aos="fade-up" data-aos-delay="100">
+        <img src="https://images.unsplash.com/photo-1547658719-da2b51169166?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="E-commerce Website" class="portfolio-image">
+        <div class="portfolio-content">
+          <span class="portfolio-category">Website</span>
+          <h3 class="portfolio-title">E-commerce Platform</h3>
+          <p class="portfolio-description">Platform e-commerce modern dengan fitur pembayaran terintegrasi dan manajemen inventori.</p>
+          <div class="portfolio-tags">
+            <span class="portfolio-tag">React</span>
+            <span class="portfolio-tag">Node.js</span>
+            <span class="portfolio-tag">MongoDB</span>
+          </div>
+          <div class="portfolio-links">
+            <a href="#" class="portfolio-link"><i class="fas fa-external-link-alt"></i> Live Demo</a>
+            <a href="#" class="portfolio-link"><i class="fab fa-github"></i> Source Code</a>
           </div>
         </div>
-        <div class="portfolio-item" data-aos="fade-up" data-aos-delay="200">
-          <div class="portfolio-image" style="background-image: url('https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80')"></div>
-          <i class="fas fa-ticket-alt"></i>
-          <strong>Dashboard Pengaduan</strong>
-          <p>Portal pengaduan internal untuk lembaga pendidikan.</p>
-          <div class="tech-stack">
-            <span class="tech-badge">React</span>
-            <span class="tech-badge">GraphQL</span>
-            <span class="tech-badge">PostgreSQL</span>
+      </div>
+
+      <div class="portfolio-item" data-category="mobile" data-aos="fade-up" data-aos-delay="200">
+        <img src="https://images.unsplash.com/photo-1551650975-87deedd944c3?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Food Delivery App" class="portfolio-image">
+        <div class="portfolio-content">
+          <span class="portfolio-category">Mobile App</span>
+          <h3 class="portfolio-title">Food Delivery App</h3>
+          <p class="portfolio-description">Aplikasi pengiriman makanan dengan fitur real-time tracking dan pembayaran online.</p>
+          <div class="portfolio-tags">
+            <span class="portfolio-tag">Flutter</span>
+            <span class="portfolio-tag">Firebase</span>
+            <span class="portfolio-tag">Google Maps</span>
+          </div>
+          <div class="portfolio-links">
+            <a href="#" class="portfolio-link"><i class="fab fa-google-play"></i> Play Store</a>
+            <a href="#" class="portfolio-link"><i class="fab fa-app-store"></i> App Store</a>
           </div>
         </div>
-        <div class="portfolio-item" data-aos="fade-up" data-aos-delay="300">
-          <div class="portfolio-image" style="background-image: url('https://images.unsplash.com/photo-1556742044-3c52d6e88c62?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80')"></div>
-          <i class="fas fa-cash-register"></i>
-          <strong>Desain UI Aplikasi Kasir</strong>
-          <p>Desain antarmuka untuk aplikasi kasir berbasis mobile, fokus pada alur pengguna yang sederhana.</p>
-          <div class="tech-stack">
-            <span class="tech-badge">Flutter</span>
-            <span class="tech-badge">Firebase</span>
-            <span class="tech-badge">Material Design</span>
+      </div>
+
+      <div class="portfolio-item" data-category="ui" data-aos="fade-up" data-aos-delay="300">
+        <img src="https://images.unsplash.com/photo-1561070791-2526d30994b5?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Banking App UI" class="portfolio-image">
+        <div class="portfolio-content">
+          <span class="portfolio-category">UI/UX Design</span>
+          <h3 class="portfolio-title">Banking App UI</h3>
+          <p class="portfolio-description">Desain antarmuka modern untuk aplikasi perbankan dengan fokus pada user experience.</p>
+          <div class="portfolio-tags">
+            <span class="portfolio-tag">Figma</span>
+            <span class="portfolio-tag">UI Design</span>
+            <span class="portfolio-tag">UX Research</span>
+          </div>
+          <div class="portfolio-links">
+            <a href="#" class="portfolio-link"><i class="fab fa-behance"></i> Behance</a>
+            <a href="#" class="portfolio-link"><i class="fab fa-dribbble"></i> Dribbble</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="portfolio-item" data-category="ecommerce" data-aos="fade-up" data-aos-delay="400">
+        <img src="https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Fashion E-commerce" class="portfolio-image">
+        <div class="portfolio-content">
+          <span class="portfolio-category">E-commerce</span>
+          <h3 class="portfolio-title">Fashion E-commerce</h3>
+          <p class="portfolio-description">Platform e-commerce fashion dengan fitur virtual try-on dan rekomendasi produk.</p>
+          <div class="portfolio-tags">
+            <span class="portfolio-tag">Vue.js</span>
+            <span class="portfolio-tag">Laravel</span>
+            <span class="portfolio-tag">AI</span>
+          </div>
+          <div class="portfolio-links">
+            <a href="#" class="portfolio-link"><i class="fas fa-external-link-alt"></i> Live Demo</a>
+            <a href="#" class="portfolio-link"><i class="fab fa-github"></i> Source Code</a>
           </div>
         </div>
       </div>
     </div>
-  </section>
+
+    <section class="stats-section" data-aos="fade-up">
+      <h2>Pencapaian Kami</h2>
+      <div class="stats-grid">
+        <div class="stat-item" data-aos="fade-up" data-aos-delay="100">
+          <div class="stat-number">50+</div>
+          <div class="stat-label">Proyek Selesai</div>
+        </div>
+        <div class="stat-item" data-aos="fade-up" data-aos-delay="200">
+          <div class="stat-number">30+</div>
+          <div class="stat-label">Klien Puas</div>
+        </div>
+        <div class="stat-item" data-aos="fade-up" data-aos-delay="300">
+          <div class="stat-number">5+</div>
+          <div class="stat-label">Tahun Pengalaman</div>
+        </div>
+        <div class="stat-item" data-aos="fade-up" data-aos-delay="400">
+          <div class="stat-number">100%</div>
+          <div class="stat-label">Kepuasan Klien</div>
+        </div>
+      </div>
+    </section>
+
+    <section class="cta-section" data-aos="fade-up">
+      <h2>Siap untuk Memulai Proyek Anda?</h2>
+      <p>Hubungi kami sekarang untuk konsultasi gratis dan diskusikan ide proyek Anda.</p>
+      <a href="contact.html" class="cta-button">Hubungi Kami</a>
+    </section>
+  </div>
 
   <footer>
-    &copy; 2025 Oblivious Dev. All rights reserved.
+    &copy; 2024 Oblivious Dev. All rights reserved.
   </footer>
+
+  <button class="theme-toggle" id="themeToggle" aria-label="Toggle Dark Mode">
+    <i class="fas fa-moon"></i>
+  </button>
 
   <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
   <script>
+    // Loading Animation
+    window.addEventListener('load', () => {
+      const loadingOverlay = document.querySelector('.loading-overlay');
+      loadingOverlay.classList.add('hidden');
+    });
+
+    // Progress Bar
+    window.addEventListener('scroll', () => {
+      const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+      const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+      const scrolled = (winScroll / height) * 100;
+      document.querySelector('.progress-bar').style.width = scrolled + '%';
+    });
+
+    // AOS initialization
     AOS.init({
       duration: 1000,
       once: true
+    });
+
+    // Theme Toggle
+    const themeToggle = document.getElementById('themeToggle');
+    const themeIcon = themeToggle.querySelector('i');
+    
+    const savedTheme = localStorage.getItem('theme');
+    if (savedTheme) {
+      document.documentElement.setAttribute('data-theme', savedTheme);
+      updateThemeIcon(savedTheme);
+    }
+
+    themeToggle.addEventListener('click', () => {
+      const currentTheme = document.documentElement.getAttribute('data-theme');
+      const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+      
+      document.documentElement.setAttribute('data-theme', newTheme);
+      localStorage.setItem('theme', newTheme);
+      updateThemeIcon(newTheme);
+    });
+
+    function updateThemeIcon(theme) {
+      themeIcon.className = theme === 'dark' ? 'fas fa-sun' : 'fas fa-moon';
+    }
+
+    // Portfolio Filter
+    const filterButtons = document.querySelectorAll('.filter-button');
+    const portfolioItems = document.querySelectorAll('.portfolio-item');
+
+    filterButtons.forEach(button => {
+      button.addEventListener('click', () => {
+        // Remove active class from all buttons
+        filterButtons.forEach(btn => btn.classList.remove('active'));
+        // Add active class to clicked button
+        button.classList.add('active');
+
+        const filterValue = button.getAttribute('data-filter');
+
+        portfolioItems.forEach(item => {
+          if (filterValue === 'all' || item.getAttribute('data-category') === filterValue) {
+            item.style.display = 'block';
+          } else {
+            item.style.display = 'none';
+          }
+        });
+      });
     });
   </script>
 </body>

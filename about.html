@@ -5,12 +5,265 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Tentang Kami - Oblivious Dev</title>
   <link rel="icon" type="image/png" href="ICONODcrop.png">
+  <link rel="manifest" href="manifest.json">
+  <meta name="theme-color" content="#7c3aed">
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
   <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
   <link rel="stylesheet" href="styles.css">
+  <style>
+    .about-hero {
+      background: var(--glass-bg);
+      border-radius: 20px;
+      margin: 40px auto;
+      padding: 60px 30px;
+      text-align: center;
+      box-shadow: 0 15px 35px rgba(0,0,0,0.4);
+      border: 1px solid var(--glass-border);
+    }
+
+    .about-hero h1 {
+      font-size: 3rem;
+      color: var(--text-color);
+      margin-bottom: 20px;
+    }
+
+    .about-hero p {
+      font-size: 1.2rem;
+      color: var(--text-color);
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    .team-section {
+      margin: 80px auto;
+    }
+
+    .team-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 40px;
+      margin-top: 40px;
+    }
+
+    .team-member {
+      background: var(--glass-bg);
+      border-radius: 20px;
+      overflow: hidden;
+      box-shadow: 0 15px 35px rgba(0,0,0,0.4);
+      border: 1px solid var(--glass-border);
+      transition: all 0.3s ease;
+    }
+
+    .team-member:hover {
+      transform: translateY(-10px);
+    }
+
+    .member-image {
+      width: 100%;
+      height: 300px;
+      object-fit: cover;
+    }
+
+    .member-info {
+      padding: 25px;
+      text-align: center;
+    }
+
+    .member-name {
+      font-size: 1.5rem;
+      color: var(--text-color);
+      margin-bottom: 5px;
+    }
+
+    .member-role {
+      color: var(--primary-color);
+      font-size: 1.1rem;
+      margin-bottom: 15px;
+    }
+
+    .member-bio {
+      color: var(--text-color);
+      margin-bottom: 20px;
+      line-height: 1.6;
+    }
+
+    .social-links {
+      display: flex;
+      justify-content: center;
+      gap: 15px;
+    }
+
+    .social-link {
+      color: var(--primary-color);
+      font-size: 1.2rem;
+      transition: all 0.3s ease;
+    }
+
+    .social-link:hover {
+      color: var(--secondary-color);
+      transform: translateY(-3px);
+    }
+
+    .values-section {
+      margin: 80px auto;
+    }
+
+    .values-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 30px;
+      margin-top: 40px;
+    }
+
+    .value-card {
+      background: var(--glass-bg);
+      border-radius: 20px;
+      padding: 30px;
+      text-align: center;
+      box-shadow: 0 15px 35px rgba(0,0,0,0.4);
+      border: 1px solid var(--glass-border);
+      transition: all 0.3s ease;
+    }
+
+    .value-card:hover {
+      transform: translateY(-10px);
+    }
+
+    .value-icon {
+      font-size: 2.5rem;
+      color: var(--primary-color);
+      margin-bottom: 20px;
+    }
+
+    .value-title {
+      font-size: 1.3rem;
+      color: var(--text-color);
+      margin-bottom: 15px;
+    }
+
+    .value-description {
+      color: var(--text-color);
+      line-height: 1.6;
+    }
+
+    .timeline-section {
+      margin: 80px auto;
+    }
+
+    .timeline {
+      position: relative;
+      max-width: 800px;
+      margin: 40px auto;
+    }
+
+    .timeline::after {
+      content: '';
+      position: absolute;
+      width: 4px;
+      background: var(--primary-color);
+      top: 0;
+      bottom: 0;
+      left: 50%;
+      margin-left: -2px;
+    }
+
+    .timeline-item {
+      padding: 10px 40px;
+      position: relative;
+      width: 50%;
+      box-sizing: border-box;
+    }
+
+    .timeline-item:nth-child(odd) {
+      left: 0;
+    }
+
+    .timeline-item:nth-child(even) {
+      left: 50%;
+    }
+
+    .timeline-content {
+      background: var(--glass-bg);
+      border-radius: 20px;
+      padding: 20px;
+      position: relative;
+      box-shadow: 0 15px 35px rgba(0,0,0,0.4);
+      border: 1px solid var(--glass-border);
+    }
+
+    .timeline-content::after {
+      content: '';
+      position: absolute;
+      width: 20px;
+      height: 20px;
+      background: var(--primary-color);
+      border-radius: 50%;
+      top: 20px;
+      right: -10px;
+      z-index: 1;
+    }
+
+    .timeline-item:nth-child(even) .timeline-content::after {
+      left: -10px;
+    }
+
+    .timeline-date {
+      color: var(--primary-color);
+      font-weight: 600;
+      margin-bottom: 10px;
+    }
+
+    .timeline-title {
+      font-size: 1.2rem;
+      color: var(--text-color);
+      margin-bottom: 10px;
+    }
+
+    .timeline-description {
+      color: var(--text-color);
+      line-height: 1.6;
+    }
+
+    @media (max-width: 768px) {
+      .about-hero h1 {
+        font-size: 2.5rem;
+      }
+
+      .about-hero p {
+        font-size: 1.1rem;
+      }
+
+      .timeline::after {
+        left: 31px;
+      }
+
+      .timeline-item {
+        width: 100%;
+        padding-left: 70px;
+        padding-right: 25px;
+      }
+
+      .timeline-item:nth-child(even) {
+        left: 0;
+      }
+
+      .timeline-content::after {
+        left: -10px;
+      }
+
+      .timeline-item:nth-child(even) .timeline-content::after {
+        left: -10px;
+      }
+    }
+  </style>
 </head>
 <body>
+  <div class="loading-overlay">
+    <div class="loader"></div>
+  </div>
+  <div class="progress-bar"></div>
+
   <div class="navbar">
     <div class="container">
       <a href="index.html" class="logo">
@@ -18,55 +271,181 @@
         Oblivious Dev
       </a>
       <ul class="nav-links">
-        <li><a href="about.html">Tentang Kami</a></li>
+        <li><a href="about.html" class="active">Tentang Kami</a></li>
         <li><a href="services.html">Layanan</a></li>
         <li><a href="portfolio.html">Portofolio</a></li>
+        <li><a href="blog.html">Blog</a></li>
         <li><a href="contact.html">Kontak</a></li>
       </ul>
     </div>
   </div>
 
-  <section id="about" class="page-section" data-aos="fade-up">
-    <div class="container">
-      <h2>Tentang Kami</h2>
-      <div class="about-content">
-        <div class="about-text">
-          <p>Kami membantu UMKM dan startup melakukan digitalisasi proses bisnis melalui sistem informasi custom dan desain antarmuka yang profesional. Berpengalaman di bidang IT implementasi dan UI/UX design, kami siap menjadi mitra teknologi Anda.</p>
-          
-          <div class="about-features">
-            <div class="feature-item">
-              <i class="fas fa-check-circle"></i>
-              <h3>Pengalaman 5+ Tahun</h3>
-              <p>Tim kami memiliki pengalaman lebih dari 5 tahun dalam pengembangan sistem dan desain UI/UX.</p>
+  <div class="page-section">
+    <section class="about-hero" data-aos="fade-up">
+      <h1>Tentang Oblivious Dev</h1>
+      <p>Kami adalah tim pengembang yang berdedikasi untuk membantu UMKM dan startup dalam transformasi digital mereka. Dengan pengalaman lebih dari 5 tahun di industri teknologi, kami telah membantu berbagai klien mencapai tujuan bisnis mereka melalui solusi digital yang inovatif.</p>
+    </section>
+
+    <section class="values-section" data-aos="fade-up">
+      <h2>Nilai-Nilai Kami</h2>
+      <div class="values-grid">
+        <div class="value-card" data-aos="fade-up" data-aos-delay="100">
+          <i class="fas fa-lightbulb value-icon"></i>
+          <h3 class="value-title">Inovasi</h3>
+          <p class="value-description">Kami selalu mencari cara baru dan lebih baik untuk menyelesaikan masalah, menggunakan teknologi terbaru untuk memberikan solusi yang optimal.</p>
+        </div>
+        <div class="value-card" data-aos="fade-up" data-aos-delay="200">
+          <i class="fas fa-handshake value-icon"></i>
+          <h3 class="value-title">Kolaborasi</h3>
+          <p class="value-description">Kami percaya bahwa kerja sama yang baik dengan klien adalah kunci kesuksesan. Kami melibatkan klien dalam setiap tahap pengembangan.</p>
+        </div>
+        <div class="value-card" data-aos="fade-up" data-aos-delay="300">
+          <i class="fas fa-chart-line value-icon"></i>
+          <h3 class="value-title">Pertumbuhan</h3>
+          <p class="value-description">Kami terus belajar dan berkembang, mengikuti tren teknologi terbaru untuk memberikan solusi yang relevan dan efektif.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="team-section" data-aos="fade-up">
+      <h2>Tim Kami</h2>
+      <div class="team-grid">
+        <div class="team-member" data-aos="fade-up" data-aos-delay="100">
+          <img src="https://randomuser.me/api/portraits/men/1.jpg" alt="Team Member" class="member-image">
+          <div class="member-info">
+            <h3 class="member-name">Ahmad Rizki</h3>
+            <p class="member-role">Lead Developer</p>
+            <p class="member-bio">Lebih dari 8 tahun pengalaman dalam pengembangan web dan mobile applications. Spesialisasi dalam React dan Node.js.</p>
+            <div class="social-links">
+              <a href="#" class="social-link"><i class="fab fa-linkedin"></i></a>
+              <a href="#" class="social-link"><i class="fab fa-github"></i></a>
+              <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
             </div>
-            
-            <div class="feature-item">
-              <i class="fas fa-users"></i>
-              <h3>Tim Profesional</h3>
-              <p>Dikelola oleh tim yang berpengalaman dan bersertifikasi di bidang teknologi.</p>
+          </div>
+        </div>
+        <div class="team-member" data-aos="fade-up" data-aos-delay="200">
+          <img src="https://randomuser.me/api/portraits/women/1.jpg" alt="Team Member" class="member-image">
+          <div class="member-info">
+            <h3 class="member-name">Sarah Wijaya</h3>
+            <p class="member-role">UI/UX Designer</p>
+            <p class="member-bio">Ahli dalam menciptakan pengalaman pengguna yang intuitif dan menarik. Menguasai Figma dan Adobe XD.</p>
+            <div class="social-links">
+              <a href="#" class="social-link"><i class="fab fa-linkedin"></i></a>
+              <a href="#" class="social-link"><i class="fab fa-dribbble"></i></a>
+              <a href="#" class="social-link"><i class="fab fa-behance"></i></a>
             </div>
-            
-            <div class="feature-item">
-              <i class="fas fa-project-diagram"></i>
-              <h3>50+ Proyek Sukses</h3>
-              <p>Telah menyelesaikan lebih dari 50 proyek untuk berbagai klien dari berbagai industri.</p>
+          </div>
+        </div>
+        <div class="team-member" data-aos="fade-up" data-aos-delay="300">
+          <img src="https://randomuser.me/api/portraits/men/2.jpg" alt="Team Member" class="member-image">
+          <div class="member-info">
+            <h3 class="member-name">Budi Santoso</h3>
+            <p class="member-role">Backend Developer</p>
+            <p class="member-bio">Spesialis dalam pengembangan backend dan database. Menguasai Node.js, Python, dan berbagai teknologi cloud.</p>
+            <div class="social-links">
+              <a href="#" class="social-link"><i class="fab fa-linkedin"></i></a>
+              <a href="#" class="social-link"><i class="fab fa-github"></i></a>
+              <a href="#" class="social-link"><i class="fab fa-stack-overflow"></i></a>
             </div>
           </div>
         </div>
       </div>
-    </div>
-  </section>
+    </section>
+
+    <section class="timeline-section" data-aos="fade-up">
+      <h2>Perjalanan Kami</h2>
+      <div class="timeline">
+        <div class="timeline-item" data-aos="fade-up" data-aos-delay="100">
+          <div class="timeline-content">
+            <div class="timeline-date">2019</div>
+            <h3 class="timeline-title">Awal Mula</h3>
+            <p class="timeline-description">Oblivious Dev didirikan dengan visi untuk membantu UMKM dalam transformasi digital mereka.</p>
+          </div>
+        </div>
+        <div class="timeline-item" data-aos="fade-up" data-aos-delay="200">
+          <div class="timeline-content">
+            <div class="timeline-date">2020</div>
+            <h3 class="timeline-title">Ekspansi Tim</h3>
+            <p class="timeline-description">Tim kami berkembang dengan penambahan talenta-talenta baru di bidang UI/UX dan backend development.</p>
+          </div>
+        </div>
+        <div class="timeline-item" data-aos="fade-up" data-aos-delay="300">
+          <div class="timeline-content">
+            <div class="timeline-date">2021</div>
+            <h3 class="timeline-title">Inovasi Teknologi</h3>
+            <p class="timeline-description">Memperkenalkan solusi berbasis AI dan machine learning untuk meningkatkan efisiensi bisnis klien.</p>
+          </div>
+        </div>
+        <div class="timeline-item" data-aos="fade-up" data-aos-delay="400">
+          <div class="timeline-content">
+            <div class="timeline-date">2022</div>
+            <h3 class="timeline-title">Prestasi</h3>
+            <p class="timeline-description">Mencapai milestone 50+ proyek sukses dan 30+ klien puas.</p>
+          </div>
+        </div>
+        <div class="timeline-item" data-aos="fade-up" data-aos-delay="500">
+          <div class="timeline-content">
+            <div class="timeline-date">2023</div>
+            <h3 class="timeline-title">Ekspansi Layanan</h3>
+            <p class="timeline-description">Memperluas layanan ke bidang cloud computing dan DevOps untuk memberikan solusi yang lebih komprehensif.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
 
   <footer>
-    &copy; 2025 Oblivious Dev. All rights reserved.
+    &copy; 2024 Oblivious Dev. All rights reserved.
   </footer>
+
+  <button class="theme-toggle" id="themeToggle" aria-label="Toggle Dark Mode">
+    <i class="fas fa-moon"></i>
+  </button>
 
   <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
   <script>
+    // Loading Animation
+    window.addEventListener('load', () => {
+      const loadingOverlay = document.querySelector('.loading-overlay');
+      loadingOverlay.classList.add('hidden');
+    });
+
+    // Progress Bar
+    window.addEventListener('scroll', () => {
+      const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+      const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+      const scrolled = (winScroll / height) * 100;
+      document.querySelector('.progress-bar').style.width = scrolled + '%';
+    });
+
+    // AOS initialization
     AOS.init({
       duration: 1000,
       once: true
     });
+
+    // Theme Toggle
+    const themeToggle = document.getElementById('themeToggle');
+    const themeIcon = themeToggle.querySelector('i');
+    
+    const savedTheme = localStorage.getItem('theme');
+    if (savedTheme) {
+      document.documentElement.setAttribute('data-theme', savedTheme);
+      updateThemeIcon(savedTheme);
+    }
+
+    themeToggle.addEventListener('click', () => {
+      const currentTheme = document.documentElement.getAttribute('data-theme');
+      const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+      
+      document.documentElement.setAttribute('data-theme', newTheme);
+      localStorage.setItem('theme', newTheme);
+      updateThemeIcon(newTheme);
+    });
+
+    function updateThemeIcon(theme) {
+      themeIcon.className = theme === 'dark' ? 'fas fa-sun' : 'fas fa-moon';
+    }
   </script>
 </body>
 </html> 

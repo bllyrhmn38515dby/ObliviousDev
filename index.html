@@ -3,25 +3,31 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Oblivious Dev</title>
+  <title>Oblivious Dev - Solusi Digital Terbaik</title>
   <link rel="icon" type="image/png" href="ICONODcrop.png">
+  <link rel="manifest" href="manifest.json">
+  <meta name="theme-color" content="#7c3aed">
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
   <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
   <link rel="stylesheet" href="styles.css">
+  <!-- Preload critical assets -->
+  <link rel="preload" href="ICONODcrop.png" as="image">
+  <link rel="preload" href="styles.css" as="style">
+  <link rel="preload" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" as="style">
   <style>
     :root {
-      --primary-color: #5a189a; /* Darker Purple */
-      --secondary-color: #240046; /* Very Dark Purple */
-      --accent-color: #9d4edd; /* Bright Purple */
-      --secondary-accent-color: #00a896; /* Muted Cyan/Teal */
-      --text-color: #e0aaff; /* Light Purple */
-      --dark-text-color: #1f2937; /* Keep dark text for contrast on light elements if any */
-      --light-bg: #f3f4f6; /* Keep for contrast */
-      --dark-bg: #1a0035; /* Even darker background */
+      --primary-color: #7c3aed; /* Warna ungu yang lebih terang */
+      --secondary-color: #4f46e5; /* Warna biru ungu */
+      --accent-color: #8b5cf6; /* Warna ungu yang lebih cerah */
+      --secondary-accent-color: #06b6d4; /* Warna cyan yang lebih terang */
+      --text-color: #1e293b; /* Warna teks gelap */
+      --dark-text-color: #0f172a; /* Warna teks yang lebih gelap */
+      --light-bg: #f8fafc; /* Warna background terang */
+      --dark-bg: #334155; /* Warna background gelap yang lebih terang */
       --white: #ffffff;
-      --glass-bg: rgba(255, 255, 255, 0.08); /* Slightly more visible glass */
-      --glass-border: rgba(255, 255, 255, 0.15); /* Slightly more visible border */
+      --glass-bg: rgba(255, 255, 255, 0.7); /* Glass effect yang lebih terang */
+      --glass-border: rgba(255, 255, 255, 0.8); /* Border glass yang lebih terang */
     }
 
     * {
@@ -32,17 +38,17 @@
 
     body {
       font-family: 'Poppins', sans-serif;
-      color: var(--white); /* Change body text to light for dark background */
+      color: var(--text-color);
       line-height: 1.6;
-      background: linear-gradient(135deg, var(--secondary-color) 0%, var(--primary-color) 50%, var(--secondary-accent-color) 100%); /* Added secondary accent */
+      background: linear-gradient(135deg, var(--light-bg) 0%, #e0e7ff 50%, #dbeafe 100%);
       min-height: 100vh;
       padding-top: 70px;
     }
 
     header {
-      background: linear-gradient(135deg, var(--secondary-color), var(--primary-color));
-      color: var(--white);
-      padding: 120px 20px 80px 20px; /* Adjust padding */
+      background: linear-gradient(135deg, var(--light-bg) 0%, #e0e7ff 50%, #dbeafe 100%);
+      color: var(--text-color);
+      padding: 120px 20px 80px 20px;
       text-align: center;
       position: relative;
       overflow: hidden;
@@ -52,7 +58,7 @@
       justify-content: center;
       align-items: center;
       isolation: isolate;
-      border-bottom: 5px solid var(--accent-color); /* Add border */
+      border-bottom: 5px solid var(--accent-color);
     }
 
      header::before {
@@ -75,13 +81,14 @@
     }
 
     header h1 {
-      font-size: 5rem; /* Larger font size */
+      color: var(--text-color);
+      font-size: 5rem;
       margin-bottom: 1.5rem;
       animation: fadeInDown 1.2s ease;
-      text-shadow: 0 8px 20px rgba(0,0,0,0.6);
+      text-shadow: 0 8px 20px rgba(0,0,0,0.1);
       position: relative;
       font-weight: 700;
-      letter-spacing: 3px; /* More spacing */
+      letter-spacing: 3px;
     }
 
     header h1::after {
@@ -97,13 +104,13 @@
     }
 
     header p {
-      font-size: 1.6rem; /* Larger font size */
+      color: var(--text-color);
+      font-size: 1.6rem;
       opacity: 0.9;
       animation: fadeInUp 1.2s ease;
-      max-width: 800px; /* Wider */
-      margin: 0 auto 50px auto; /* More margin */
+      max-width: 800px;
+      margin: 0 auto 50px auto;
       font-weight: 300;
-      color: var(--light-bg); /* Use light purple text */
     }
 
     .stats-container {
@@ -128,6 +135,7 @@
       border: 1px solid var(--glass-border);
       backdrop-filter: blur(8px); /* More blur */
       transition: transform 0.4s ease;
+      color: var(--text-color);
     }
 
     .stat-item:hover {
@@ -136,15 +144,15 @@
     }
 
     .stat-number {
+      color: var(--primary-color);
       font-size: 3.5rem; /* Larger number */
       font-weight: 700;
-      color: #FFD24D;
       margin-bottom: 8px; /* More margin */
       text-shadow: 0 3px 8px rgba(0,0,0,0.3);
     }
 
     .stat-label {
-      color: var(--light-bg); /* Use light purple */
+      color: var(--text-color);
       font-size: 1.2rem; /* Larger label */
       font-weight: 400;
     }
@@ -155,7 +163,7 @@
       left: 50%;
       transform: translateX(-50%);
       animation: bounce 2s infinite;
-      color: var(--glass-border); /* Change color */
+      color: var(--primary-color);
       font-size: 2.5rem; /* Larger icon */
     }
 
@@ -174,7 +182,7 @@
     }
 
     h2 {
-      color: var(--white);
+      color: var(--text-color);
       font-size: 3.5rem; /* Larger font size */
       margin-bottom: 2.5rem; /* More margin */
       text-align: center;
@@ -186,20 +194,54 @@
     h2::after {
       content: '';
       display: block;
-      width: 120px; /* Wider */
-      height: 6px; /* Thicker */
+      width: 120px;
+      height: 6px;
       background: #20466c;
-      margin: 1.5rem auto; /* More margin */
+      margin: 1.5rem auto;
       border-radius: 3px;
       box-shadow: 0 2px 4px rgba(0,0,0,0.1);
     }
 
+    #about {
+        padding: 100px 20px; /* Ensure ample padding for parallax */
+        position: relative; /* Needed for pseudo-element */
+        z-index: 1; /* Ensure content is above overlay */
+        background-image: url('parallax1.jpg'); /* Use the local image */
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-attachment: fixed; /* Parallax effect */
+        background-position: center center; /* Center the background image */
+        color: white; /* Change text color for better contrast */
+        text-shadow: 0 2px 5px rgba(0,0,0,0.3); /* Add text shadow */
+        max-width: none; /* Remove max-width */
+        margin: 0; /* Remove auto margin */
+    }
+
+    #about::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(0, 0, 0, 0.5); /* Dark overlay */
+      z-index: -1; /* Below content, above background */
+    }
+
+    #about h2 {
+        color: white; /* Ensure heading is white */
+    }
+
+    #about h2::after {
+        background: white; /* White line for contrast */
+    }
+
     #about p {
-        max-width: 900px; /* Wider */
-        margin: 30px auto; /* More margin */
+        max-width: 900px; /* Keep content centered and readable */
+        margin: 30px auto; /* Keep content centered and readable */
         text-align: center;
         font-size: 1.2rem; /* Larger font */
-        color: var(--white); /* Use white for better contrast */
+        color: white; /* Use white for better contrast */
     }
 
     .services, .portfolio {
@@ -219,7 +261,7 @@
       border: 1px solid var(--glass-border); /* Use glass border */
       position: relative;
       overflow: hidden;
-      color: var(--white); /* Use white for better contrast */
+      color: var(--text-color); /* Use white for better contrast */
     }
 
      .service-item:hover, .portfolio-item:hover {
@@ -247,7 +289,7 @@
 
     .service-item i, .portfolio-item i {
       font-size: 3.2rem; /* Larger icons */
-      color: #FFD24D;
+      color: var(--primary-color);
       margin-bottom: 15px;
       display: block;
       text-shadow: 0 3px 8px rgba(0,0,0,0.3);
@@ -257,7 +299,7 @@
       display: block;
       font-size: 1.8rem; /* Larger font */
       margin-bottom: 1.2rem;
-      color: var(--light-bg);
+      color: var(--text-color);
       position: relative;
     }
 
@@ -273,21 +315,20 @@
       background: rgba(255,255,255,0.15); /* More visible badge */
       border-radius: 25px; /* More rounded */
       font-size: 1rem; /* Larger font */
-      color: var(--white); /* Use white for better contrast */
+      color: var(--text-color); /* Use white for better contrast */
       border: 1px solid rgba(255,255,255,0.2);
     }
 
     .testimonial-section {
-      background: rgba(255, 255, 255, 0.08); /* Slightly more visible glass */
-        backdrop-filter: blur(8px); /* More blur */
-      color: white;
+      background: var(--glass-bg);
+      color: var(--text-color);
       padding: 100px 20px; /* More padding */
       margin: 100px auto; /* More margin */
       border-radius: 30px;
       box-shadow: 0 25px 50px rgba(0,0,0,0.4);
       position: relative;
       overflow: hidden;
-      border: 5px solid var(--secondary-accent-color); /* Add border */
+      border: 5px solid var(--accent-color); /* Add border */
     }
 
     .testimonial-section::before {
@@ -308,7 +349,7 @@
     }
 
     .testimonial-section h2 {
-        color: var(--white);
+        color: var(--text-color);
          z-index: 1;
          position: relative;
     }
@@ -350,6 +391,7 @@
       scroll-snap-align: start;
       border: 1px solid var(--glass-border); /* Use glass border */
       box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+      color: var(--text-color);
     }
 
     .testimonial-avatar {
@@ -364,36 +406,35 @@
     .testimonial-card p {
       font-size: 1.2rem; /* Larger font */
       margin-bottom: 20px; /* More margin */
-      color: var(--white); /* Use white for better contrast */
+      color: var(--text-color);
     }
 
     .testimonial-card strong {
       font-weight: 600;
-      color: var(--white);
+      color: var(--text-color);
       font-size: 1.1rem; /* Slightly larger name */
     }
 
     .cta-section {
       text-align: center;
       padding: 100px 20px; /* More padding */
-      background: rgba(255, 255, 255, 0.08); /* Slightly more visible glass */
-        backdrop-filter: blur(8px); /* More blur */
+      background: var(--glass-bg);
       border-radius: 20px;
       margin: 100px auto; /* More margin */
       box-shadow: 0 25px 50px rgba(0,0,0,0.4);
-      color: var(--white);
-      border: 5px solid var(--secondary-accent-color); /* Add border */
+      color: var(--text-color);
+      border: 5px solid var(--accent-color);
     }
 
     .cta-section h2 {
-        color: var(--white);
+        color: var(--text-color);
     }
 
     .cta-button {
       display: inline-block;
       padding: 18px 50px; /* More padding */
-      background: var(--accent-color);
-      color: white;
+      background: var(--primary-color);
+      color: var(--white);
       border-radius: 35px; /* More rounded */
       text-decoration: none;
       font-weight: 600;
@@ -406,12 +447,11 @@
     .cta-button:hover {
       transform: translateY(-8px) scale(1.06); /* More pronounced hover */
       box-shadow: 0 20px 40px rgba(157,78,221,0.5);
-      background: var(--primary-color);
+      background: var(--secondary-color);
     }
 
     #contact {
-        background: rgba(255, 255, 255, 0.08); /* Slightly more visible glass */
-        backdrop-filter: blur(8px); /* More blur */
+        background: var(--glass-bg);
         border-radius: 20px;
         margin: 80px auto;
         padding: 50px 30px; /* More padding */
@@ -420,7 +460,7 @@
     }
 
     #contact h2 {
-        color: #0E2148;
+        color: var(--text-color);
     }
 
     .contact-info {
@@ -440,7 +480,7 @@
       border-radius: 15px; /* More rounded */
       transition: transform 0.3s ease;
       border: 1px solid var(--glass-border); /* Use glass border */
-      color: var(--white); /* Use white for better contrast */
+      color: var(--text-color); /* Use white for better contrast */
     }
 
     .contact-item:hover {
@@ -450,11 +490,11 @@
 
     .contact-item i {
       font-size: 1.8rem; /* Larger icons */
-      color: #17355c;
+      color: var(--primary-color);
     }
 
     .contact-item a {
-        color: var(--white); /* Use white for better contrast */
+        color: var(--text-color); /* Use white for better contrast */
         font-weight: 400;
          position: relative;
     }
@@ -466,7 +506,7 @@
       left: 0;
       width: 0;
       height: 3px; /* Thicker */
-      background: #17355c;
+      background: var(--primary-color);
       transition: width 0.3s ease;
     }
 
@@ -475,8 +515,8 @@
     }
 
     footer {
-      background: var(--dark-bg); /* Use darker background */
-      color: #a0a0a0;
+      background: var(--dark-bg);
+      color: var(--light-bg);
       text-align: center;
       padding: 50px; /* More padding */
       font-size: 15px; /* Slightly larger font */
@@ -491,7 +531,7 @@
       left: 0;
       right: 0;
       height: 6px; /* Thicker */
-      background: linear-gradient(90deg, var(--secondary-color), var(--accent-color), var(--primary-color));
+      background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
     }
 
     @keyframes fadeInDown {
@@ -521,8 +561,8 @@
       top: 0;
       left: 0;
       width: 100%;
-      background: rgba(36, 0, 70, 0.8); /* Dark purple with transparency */
-      backdrop-filter: blur(5px);
+      background: rgba(255, 255, 255, 0.8);
+      backdrop-filter: blur(10px);
       z-index: 1000;
       padding: 15px 20px;
       box-shadow: 0 2px 10px rgba(0,0,0,0.3);
@@ -539,7 +579,7 @@
     .navbar .logo {
       font-size: 1.8rem;
       font-weight: 700;
-      color: var(--accent-color);
+      color: var(--primary-color);
       text-decoration: none;
     }
 
@@ -550,7 +590,7 @@
     }
 
     .navbar .nav-links a {
-      color: var(--white);
+      color: var(--text-color);
       text-decoration: none;
       font-weight: 500;
       transition: color 0.3s ease;
@@ -564,7 +604,7 @@
       left: 0;
       width: 0;
       height: 2px;
-      background: var(--accent-color);
+      background: var(--primary-color);
       transition: width 0.3s ease;
     }
 
@@ -616,6 +656,11 @@
 
       h2 {
           font-size: 2.8rem; /* Adjust font size */
+      }
+
+      #about {
+        background-attachment: scroll; /* Disable fixed background on mobile for performance */
+        background-position: center center; /* Ensure background is centered */
       }
 
       #about p {
@@ -710,9 +755,593 @@
            padding-top: 60px; /* Adjust padding for smaller navbar on mobile */
        }
     }
+
+    .faq-section {
+      background: var(--glass-bg);
+      border-radius: 20px;
+      margin: 100px auto;
+      padding: 50px 30px;
+      box-shadow: 0 15px 35px rgba(0,0,0,0.4);
+      border: 1px solid var(--glass-border);
+    }
+
+    .faq-container {
+      max-width: 800px;
+      margin: 40px auto 0;
+    }
+
+    .faq-item {
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 15px;
+      margin-bottom: 20px;
+      overflow: hidden;
+      border: 1px solid var(--glass-border);
+    }
+
+    .faq-question {
+      padding: 20px;
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      transition: background-color 0.3s ease;
+    }
+
+    .faq-question:hover {
+      background: rgba(255, 255, 255, 0.1);
+    }
+
+    .faq-question h3 {
+      font-size: 1.2rem;
+      color: var(--text-color);
+      margin: 0;
+    }
+
+    .faq-question i {
+      color: var(--primary-color);
+      transition: transform 0.3s ease;
+    }
+
+    .faq-item.active .faq-question i {
+      transform: rotate(180deg);
+    }
+
+    .faq-answer {
+      padding: 0 20px;
+      max-height: 0;
+      overflow: hidden;
+      transition: all 0.3s ease;
+    }
+
+    .faq-item.active .faq-answer {
+      padding: 0 20px 20px;
+      max-height: 1000px;
+    }
+
+    .faq-answer p {
+      color: var(--text-color);
+      line-height: 1.6;
+      margin: 0;
+    }
+
+    @media (max-width: 768px) {
+      .faq-section {
+        margin: 60px auto;
+        padding: 30px 20px;
+      }
+
+      .faq-question h3 {
+        font-size: 1.1rem;
+      }
+    }
+
+    .newsletter-section {
+      background: var(--glass-bg);
+      border-radius: 20px;
+      margin: 100px auto;
+      padding: 50px 30px;
+      box-shadow: 0 15px 35px rgba(0,0,0,0.4);
+      border: 1px solid var(--glass-border);
+      text-align: center;
+    }
+
+    .newsletter-container {
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    .newsletter-section h2 {
+      color: var(--text-color);
+      margin-bottom: 20px;
+    }
+
+    .newsletter-section p {
+      color: var(--text-color);
+      margin-bottom: 30px;
+    }
+
+    .newsletter-form .form-group {
+      display: flex;
+      gap: 10px;
+      margin-bottom: 15px;
+    }
+
+    .newsletter-form input {
+      flex: 1;
+      padding: 15px 20px;
+      border: 1px solid var(--glass-border);
+      border-radius: 30px;
+      background: rgba(255, 255, 255, 0.1);
+      color: var(--text-color);
+      font-size: 1rem;
+    }
+
+    .newsletter-form button {
+      padding: 15px 30px;
+      background: var(--primary-color);
+      color: white;
+      border: none;
+      border-radius: 30px;
+      cursor: pointer;
+      font-weight: 600;
+      transition: all 0.3s ease;
+    }
+
+    .newsletter-form button:hover {
+      background: var(--secondary-color);
+      transform: translateY(-2px);
+    }
+
+    .form-message {
+      color: var(--text-color);
+      font-size: 0.9rem;
+      margin-top: 10px;
+    }
+
+    .form-message.success {
+      color: #10b981;
+    }
+
+    .form-message.error {
+      color: #ef4444;
+    }
+
+    @media (max-width: 768px) {
+      .newsletter-section {
+        margin: 60px auto;
+        padding: 30px 20px;
+      }
+
+      .newsletter-form .form-group {
+        flex-direction: column;
+      }
+
+      .newsletter-form button {
+        width: 100%;
+      }
+    }
+
+    .chat-toggle {
+      position: fixed;
+      bottom: 20px;
+      right: 90px;
+      background: var(--glass-bg);
+      border: 1px solid var(--glass-border);
+      border-radius: 50%;
+      width: 50px;
+      height: 50px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      z-index: 1000;
+      backdrop-filter: blur(10px);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      transition: all 0.3s ease;
+    }
+
+    .chat-toggle:hover {
+      transform: scale(1.1);
+    }
+
+    .chat-toggle i {
+      font-size: 1.5rem;
+      color: var(--primary-color);
+    }
+
+    .chat-widget {
+      position: fixed;
+      bottom: 90px;
+      right: 20px;
+      width: 350px;
+      height: 500px;
+      background: var(--glass-bg);
+      border-radius: 20px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+      display: flex;
+      flex-direction: column;
+      z-index: 1000;
+      backdrop-filter: blur(10px);
+      border: 1px solid var(--glass-border);
+      transform: translateY(120%);
+      transition: transform 0.3s ease;
+    }
+
+    .chat-widget.active {
+      transform: translateY(0);
+    }
+
+    .chat-header {
+      padding: 15px 20px;
+      background: var(--primary-color);
+      color: white;
+      border-radius: 20px 20px 0 0;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .chat-header h3 {
+      margin: 0;
+      font-size: 1.1rem;
+    }
+
+    .close-chat {
+      background: none;
+      border: none;
+      color: white;
+      cursor: pointer;
+      font-size: 1.2rem;
+    }
+
+    .chat-messages {
+      flex: 1;
+      padding: 20px;
+      overflow-y: auto;
+    }
+
+    .message {
+      margin-bottom: 15px;
+      max-width: 80%;
+    }
+
+    .message p {
+      padding: 10px 15px;
+      border-radius: 15px;
+      margin: 0;
+      font-size: 0.9rem;
+    }
+
+    .message.system p {
+      background: rgba(124, 58, 237, 0.1);
+      color: var(--text-color);
+    }
+
+    .message.user {
+      margin-left: auto;
+    }
+
+    .message.user p {
+      background: var(--primary-color);
+      color: white;
+    }
+
+    .chat-input {
+      padding: 15px;
+      display: flex;
+      gap: 10px;
+      border-top: 1px solid var(--glass-border);
+    }
+
+    .chat-input input {
+      flex: 1;
+      padding: 10px 15px;
+      border: 1px solid var(--glass-border);
+      border-radius: 20px;
+      background: rgba(255, 255, 255, 0.1);
+      color: var(--text-color);
+      font-size: 0.9rem;
+    }
+
+    .chat-input button {
+      background: var(--primary-color);
+      color: white;
+      border: none;
+      border-radius: 50%;
+      width: 40px;
+      height: 40px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .chat-input button:hover {
+      background: var(--secondary-color);
+      transform: scale(1.1);
+    }
+
+    @media (max-width: 768px) {
+      .chat-widget {
+        width: 100%;
+        height: 100%;
+        bottom: 0;
+        right: 0;
+        border-radius: 0;
+      }
+
+      .chat-header {
+        border-radius: 0;
+      }
+    }
+
+    .hero {
+      position: relative;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      padding: 40px 0;
+      background: linear-gradient(135deg, var(--light-bg) 0%, #e0e7ff 50%, #dbeafe 100%);
+      max-width: none; /* Remove max-width */
+      margin: 0; /* Remove auto margin */
+      width: 100%; /* Ensure full width */
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: -60%;
+      left: -60%;
+      width: 220%;
+      height: 220%;
+      background: radial-gradient(circle at 25% 35%, rgba(157,78,221, 0.4) 0%, transparent 35%),
+                  radial-gradient(circle at 75% 65%, rgba(90,24,154, 0.4) 0%, transparent 35%);
+      animation: gradientMove 20s ease infinite;
+      z-index: 1;
+    }
+
+    .hero::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, 
+        rgba(124, 58, 237, 0.1) 0%,
+        rgba(79, 70, 229, 0.1) 50%,
+        rgba(124, 58, 237, 0.1) 100%
+      );
+      z-index: 1;
+    }
+
+    .scroll-down {
+      position: absolute;
+      bottom: 40px;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 2;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 10px;
+      cursor: pointer;
+      animation: bounce 2s infinite;
+    }
+
+    .scroll-down-text {
+      color: var(--text-color);
+      font-size: 0.9rem;
+      font-weight: 500;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+    }
+
+    .scroll-down-icon {
+      width: 30px;
+      height: 50px;
+      border: 2px solid var(--primary-color);
+      border-radius: 15px;
+      position: relative;
+    }
+
+    .scroll-down-icon::before {
+      content: '';
+      position: absolute;
+      top: 8px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 6px;
+      height: 6px;
+      background: var(--primary-color);
+      border-radius: 50%;
+      animation: scrollDown 2s infinite;
+    }
+
+    @keyframes scrollDown {
+      0% {
+        opacity: 1;
+        transform: translateX(-50%) translateY(0);
+      }
+      100% {
+        opacity: 0;
+        transform: translateX(-50%) translateY(20px);
+      }
+    }
+
+    @keyframes bounce {
+      0%, 20%, 50%, 80%, 100% {
+        transform: translateY(0) translateX(-50%);
+      }
+      40% {
+        transform: translateY(-10px) translateX(-50%);
+      }
+      60% {
+        transform: translateY(-5px) translateX(-50%);
+      }
+    }
+
+    .hero-content {
+      text-align: center;
+      max-width: 800px;
+      position: relative;
+      z-index: 2;
+      background: rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(10px);
+      padding: 40px;
+      border-radius: 20px;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+      margin: 0 auto;
+      width: 90%;
+    }
+
+    .hero-logo {
+      margin-bottom: 20px;
+    }
+
+    .logo-image {
+      width: 120px;
+      height: 120px;
+      object-fit: contain;
+      animation: float 6s ease-in-out infinite;
+    }
+
+    .hero-title {
+      font-size: 4rem;
+      color: var(--text-color);
+      margin-bottom: 20px;
+      line-height: 1.2;
+      text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+
+    .hero-subtitle {
+      font-size: 1.5rem;
+      color: var(--text-color);
+      margin-bottom: 40px;
+      opacity: 0.9;
+    }
+
+    .hero-buttons {
+      display: flex;
+      gap: 20px;
+      justify-content: center;
+      margin-bottom: 40px;
+    }
+
+    .hero-button {
+      padding: 15px 30px;
+      border-radius: 30px;
+      font-weight: 600;
+      text-decoration: none;
+      transition: all 0.3s ease;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .hero-button i {
+      font-size: 1.2rem;
+    }
+
+    .primary-button {
+      background: var(--primary-color);
+      color: white;
+      box-shadow: 0 4px 15px rgba(124, 58, 237, 0.4);
+    }
+
+    .primary-button:hover {
+      background: var(--secondary-color);
+      transform: translateY(-3px);
+      box-shadow: 0 6px 20px rgba(124, 58, 237, 0.6);
+    }
+
+    .secondary-button {
+      background: rgba(255, 255, 255, 0.2);
+      color: var(--text-color);
+      border: 2px solid var(--primary-color);
+    }
+
+    .secondary-button:hover {
+      background: var(--primary-color);
+      color: white;
+      transform: translateY(-3px);
+    }
+
+    .hero-stats {
+      display: flex;
+      justify-content: center;
+      gap: 40px;
+      margin-top: 40px;
+    }
+
+    .stat-item {
+      text-align: center;
+      padding: 20px;
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 15px;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      transition: all 0.3s ease;
+    }
+
+    .stat-item:hover {
+      transform: translateY(-5px);
+      background: rgba(255, 255, 255, 0.2);
+    }
+
+    .stat-item i {
+      font-size: 2rem;
+      color: var(--primary-color);
+      margin-bottom: 10px;
+    }
+
+    .stat-number {
+      font-size: 2.5rem;
+      font-weight: 700;
+      color: var(--primary-color);
+      margin-bottom: 5px;
+    }
+
+    .stat-label {
+      color: var(--text-color);
+      font-size: 1.1rem;
+    }
+
+    @media (max-width: 768px) {
+      .hero-content {
+        padding: 20px;
+      }
+
+      .hero-title {
+        font-size: 3rem;
+      }
+
+      .hero-subtitle {
+        font-size: 1.2rem;
+      }
+
+      .hero-stats {
+        flex-direction: column;
+        gap: 20px;
+      }
+
+      .hero-buttons {
+        flex-direction: column;
+      }
+
+      .hero-button {
+        width: 100%;
+        justify-content: center;
+      }
+    }
   </style>
 </head>
 <body>
+  <div class="loading-overlay">
+    <div class="loader"></div>
+  </div>
+  <div class="progress-bar"></div>
+
   <div class="navbar">
     <div class="container">
       <a href="index.html" class="logo">
@@ -728,30 +1357,81 @@
     </div>
   </div>
 
-  <header>
-    <div class="hero-content">
-      <h1>Oblivious Dev</h1>
-      <p>Solusi Teknologi Fleksibel untuk UMKM & Startup</p>
-      <div class="stats-container">
+  <button class="theme-toggle" id="themeToggle" aria-label="Toggle Dark Mode">
+    <i class="fas fa-moon"></i>
+  </button>
+
+  <button class="chat-toggle" id="chatToggle" aria-label="Toggle Chat">
+    <i class="fas fa-comments"></i>
+  </button>
+
+  <div class="chat-widget" id="chatWidget">
+    <div class="chat-header">
+      <h3>Chat dengan Kami</h3>
+      <button class="close-chat" id="closeChat">
+        <i class="fas fa-times"></i>
+      </button>
+    </div>
+    <div class="chat-messages" id="chatMessages">
+      <div class="message system">
+        <p>Halo! Ada yang bisa kami bantu?</p>
+      </div>
+    </div>
+    <form class="chat-input" id="chatForm">
+      <input type="text" placeholder="Ketik pesan..." required>
+      <button type="submit">
+        <i class="fas fa-paper-plane"></i>
+      </button>
+    </form>
+  </div>
+
+  <section class="hero">
+    <div class="hero-shapes">
+      <div class="shape shape-1"></div>
+      <div class="shape shape-2"></div>
+      <div class="shape shape-3"></div>
+    </div>
+    <div class="hero-image"></div>
+    <div class="hero-particles" id="particles"></div>
+    <div class="hero-content" data-aos="fade-up">
+      <div class="hero-logo">
+        <img src="ICONODcrop.png" alt="Oblivious Dev Logo" class="logo-image">
+      </div>
+      <h1 class="hero-title">Oblivious Dev</h1>
+      <p class="hero-subtitle">Membangun Solusi Digital yang Inovatif untuk Masa Depan</p>
+      <div class="hero-buttons">
+        <a href="services.html" class="hero-button primary-button">
+          <i class="fas fa-rocket"></i>
+          Layanan Kami
+        </a>
+        <a href="contact.html" class="hero-button secondary-button">
+          <i class="fas fa-envelope"></i>
+          Hubungi Kami
+        </a>
+      </div>
+      <div class="hero-stats">
         <div class="stat-item" data-aos="fade-up" data-aos-delay="100">
+          <i class="fas fa-project-diagram"></i>
           <div class="stat-number">50+</div>
           <div class="stat-label">Proyek Selesai</div>
         </div>
         <div class="stat-item" data-aos="fade-up" data-aos-delay="200">
+          <i class="fas fa-smile"></i>
           <div class="stat-number">30+</div>
           <div class="stat-label">Klien Puas</div>
         </div>
         <div class="stat-item" data-aos="fade-up" data-aos-delay="300">
+          <i class="fas fa-clock"></i>
           <div class="stat-number">5+</div>
           <div class="stat-label">Tahun Pengalaman</div>
         </div>
       </div>
     </div>
-    <div class="hero-image" data-aos="fade-left"></div>
-    <div class="scroll-indicator" id="scrollDownBtn">
-      <i class="fas fa-chevron-down"></i>
+    <div class="scroll-down" onclick="scrollToContent()">
+      <span class="scroll-down-text">Scroll Down</span>
+      <div class="scroll-down-icon"></div>
     </div>
-  </header>
+  </section>
 
   <section id="about" data-aos="fade-up">
     <h2>Tentang Kami</h2>
@@ -762,7 +1442,7 @@
     <h2 data-aos="fade-up">Layanan</h2>
     <div class="services">
       <div class="service-item" data-aos="fade-up" data-aos-delay="100">
-        <div class="service-image" style="background-image: url('https://images.unsplash.com/photo-1460925895917-afdab827c52f?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80')"></div>
+        <div class="service-image" style="background-image: url('https://images.unsplash.com/photo-1460925895917-afdab827c52f?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80')" loading="lazy"></div>
         <i class="fas fa-laptop-code"></i>
         <strong>Sistem Informasi</strong>
         <p>Pengembangan sistem seperti inventory, CRM, dan tiket pengaduan berbasis kebutuhan.</p>
@@ -770,10 +1450,10 @@
           <span class="tech-badge">React</span>
           <span class="tech-badge">Node.js</span>
           <span class="tech-badge">MongoDB</span>
-        </div>
+      </div>
       </div>
       <div class="service-item" data-aos="fade-up" data-aos-delay="200">
-        <div class="service-image" style="background-image: url('https://images.unsplash.com/photo-1561070791-2526d30994b5?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80')"></div>
+        <div class="service-image" style="background-image: url('https://images.unsplash.com/photo-1561070791-2526d30994b5?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80')" loading="lazy"></div>
         <i class="fas fa-paint-brush"></i>
         <strong>UI/UX & Web Design</strong>
         <p>Desain antarmuka untuk aplikasi mobile maupun web agar lebih profesional dan mudah digunakan.</p>
@@ -781,10 +1461,10 @@
           <span class="tech-badge">Figma</span>
           <span class="tech-badge">Adobe XD</span>
           <span class="tech-badge">Sketch</span>
-        </div>
+      </div>
       </div>
       <div class="service-item" data-aos="fade-up" data-aos-delay="300">
-        <div class="service-image" style="background-image: url('https://images.unsplash.com/photo-1552581234-26160f608093?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80')"></div>
+        <div class="service-image" style="background-image: url('https://images.unsplash.com/photo-1552581234-26160f608093?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80')" loading="lazy"></div>
         <i class="fas fa-headset"></i>
         <strong>Implementasi & Support</strong>
         <p>Dukungan teknis untuk memastikan sistem berjalan sesuai ekspektasi.</p>
@@ -801,7 +1481,7 @@
     <h2 data-aos="fade-up">Portofolio</h2>
     <div class="portfolio">
       <div class="portfolio-item" data-aos="fade-up" data-aos-delay="100">
-        <div class="portfolio-image" style="background-image: url('https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80')"></div>
+        <div class="portfolio-image" style="background-image: url('https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80')" loading="lazy"></div>
         <i class="fas fa-boxes"></i>
         <strong>Sistem Inventaris Toko</strong>
         <p>Aplikasi web untuk manajemen stok, notifikasi restock, dan laporan penjualan.</p>
@@ -809,10 +1489,10 @@
           <span class="tech-badge">Vue.js</span>
           <span class="tech-badge">Firebase</span>
           <span class="tech-badge">PWA</span>
-        </div>
+      </div>
       </div>
       <div class="portfolio-item" data-aos="fade-up" data-aos-delay="200">
-        <div class="portfolio-image" style="background-image: url('https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80')"></div>
+        <div class="portfolio-image" style="background-image: url('https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80')" loading="lazy"></div>
         <i class="fas fa-ticket-alt"></i>
         <strong>Dashboard Pengaduan</strong>
         <p>Portal pengaduan internal untuk lembaga pendidikan.</p>
@@ -820,10 +1500,10 @@
           <span class="tech-badge">React</span>
           <span class="tech-badge">GraphQL</span>
           <span class="tech-badge">PostgreSQL</span>
-        </div>
+      </div>
       </div>
       <div class="portfolio-item" data-aos="fade-up" data-aos-delay="300">
-        <div class="portfolio-image" style="background-image: url('https://images.unsplash.com/photo-1556742044-3c52d6e88c62?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80')"></div>
+        <div class="portfolio-image" style="background-image: url('https://images.unsplash.com/photo-1556742044-3c52d6e88c62?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80')" loading="lazy"></div>
         <i class="fas fa-cash-register"></i>
         <strong>Desain UI Aplikasi Kasir</strong>
         <p>Desain antarmuka untuk aplikasi kasir berbasis mobile, fokus pada alur pengguna yang sederhana.</p>
@@ -840,17 +1520,17 @@
     <h2 style="color: white;">Testimoni Klien</h2>
     <div class="testimonial-container">
       <div class="testimonial-card">
-        <img src="https://randomuser.me/api/portraits/men/1.jpg" alt="Client" class="testimonial-avatar">
+        <img src="https://randomuser.me/api/portraits/men/1.jpg" alt="Client" class="testimonial-avatar" loading="lazy">
         <p>"Tim Oblivious Dev sangat profesional dan responsif. Hasil kerja mereka melebihi ekspektasi kami."</p>
         <strong>- Ahmad Rizki, CEO TechStart</strong>
       </div>
       <div class="testimonial-card">
-        <img src="https://randomuser.me/api/portraits/women/1.jpg" alt="Client" class="testimonial-avatar">
+        <img src="https://randomuser.me/api/portraits/women/1.jpg" alt="Client" class="testimonial-avatar" loading="lazy">
         <p>"Proses pengembangan yang transparan dan hasil yang memuaskan. Sangat merekomendasikan!"</p>
         <strong>- Sarah Wijaya, Founder EduTech</strong>
       </div>
       <div class="testimonial-card">
-        <img src="https://randomuser.me/api/portraits/men/2.jpg" alt="Client" class="testimonial-avatar">
+        <img src="https://randomuser.me/api/portraits/men/2.jpg" alt="Client" class="testimonial-avatar" loading="lazy">
         <p>"Sistem yang dikembangkan membantu kami meningkatkan efisiensi operasional secara signifikan."</p>
         <strong>- Budi Santoso, CTO RetailPro</strong>
       </div>
@@ -861,6 +1541,51 @@
     <h2>Siap untuk Memulai Proyek Anda?</h2>
     <p>Konsultasikan kebutuhan digital Anda bersama kami</p>
     <a href="contact.html" class="cta-button">Hubungi Kami</a>
+  </section>
+
+  <section id="faq" class="faq-section" data-aos="fade-up">
+    <h2>Pertanyaan yang Sering Diajukan</h2>
+    <div class="faq-container">
+      <div class="faq-item" data-aos="fade-up">
+        <div class="faq-question">
+          <h3>Berapa lama waktu yang dibutuhkan untuk menyelesaikan sebuah proyek?</h3>
+          <i class="fas fa-chevron-down"></i>
+        </div>
+        <div class="faq-answer">
+          <p>Waktu pengerjaan bervariasi tergantung kompleksitas proyek. Proyek sederhana bisa selesai dalam 2-4 minggu, sementara proyek kompleks membutuhkan waktu 2-3 bulan atau lebih. Kami akan memberikan estimasi waktu yang detail setelah analisis kebutuhan.</p>
+        </div>
+      </div>
+
+      <div class="faq-item" data-aos="fade-up" data-aos-delay="100">
+        <div class="faq-question">
+          <h3>Apakah ada biaya maintenance setelah proyek selesai?</h3>
+          <i class="fas fa-chevron-down"></i>
+        </div>
+        <div class="faq-answer">
+          <p>Ya, kami menawarkan paket maintenance untuk memastikan sistem tetap berjalan optimal. Biaya maintenance bervariasi tergantung jenis dan skala sistem. Kami juga menyediakan dukungan teknis 24/7 untuk klien yang membutuhkan.</p>
+        </div>
+      </div>
+
+      <div class="faq-item" data-aos="fade-up" data-aos-delay="200">
+        <div class="faq-question">
+          <h3>Bagaimana proses pengembangan proyek?</h3>
+          <i class="fas fa-chevron-down"></i>
+        </div>
+        <div class="faq-answer">
+          <p>Proses kami terdiri dari beberapa tahap: analisis kebutuhan, desain, pengembangan, testing, dan deployment. Kami menggunakan metodologi Agile untuk memastikan transparansi dan fleksibilitas dalam pengembangan.</p>
+        </div>
+      </div>
+
+      <div class="faq-item" data-aos="fade-up" data-aos-delay="300">
+        <div class="faq-question">
+          <h3>Apakah Anda menyediakan layanan hosting?</h3>
+          <i class="fas fa-chevron-down"></i>
+        </div>
+        <div class="faq-answer">
+          <p>Ya, kami menyediakan layanan hosting dengan berbagai paket yang dapat disesuaikan dengan kebutuhan Anda. Kami menggunakan server yang handal dan aman untuk memastikan performa optimal.</p>
+        </div>
+      </div>
+    </div>
   </section>
 
   <section id="contact">
@@ -881,23 +1606,197 @@
     </div>
   </section>
 
+  <section class="newsletter-section" data-aos="fade-up">
+    <div class="newsletter-container">
+      <h2>Berlangganan Newsletter</h2>
+      <p>Dapatkan informasi terbaru seputar teknologi dan tips digital marketing</p>
+      <form class="newsletter-form" id="newsletterForm">
+        <div class="form-group">
+          <input type="email" placeholder="Masukkan email Anda" required>
+          <button type="submit">Berlangganan</button>
+        </div>
+        <div class="form-message"></div>
+      </form>
+    </div>
+  </section>
+
   <footer>
     &copy; 2025 Oblivious Dev. All rights reserved.
   </footer>
 
   <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
   <script>
+    // Loading Animation
+    window.addEventListener('load', () => {
+      const loadingOverlay = document.querySelector('.loading-overlay');
+      loadingOverlay.classList.add('hidden');
+    });
+
+    // Progress Bar
+    window.addEventListener('scroll', () => {
+      const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+      const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+      const scrolled = (winScroll / height) * 100;
+      document.querySelector('.progress-bar').style.width = scrolled + '%';
+    });
+
+    // Existing AOS initialization
     AOS.init({
       duration: 1000,
       once: true
     });
 
+    // Theme Toggle Functionality
+    const themeToggle = document.getElementById('themeToggle');
+    const themeIcon = themeToggle.querySelector('i');
+    
+    // Check for saved theme preference
+    const savedTheme = localStorage.getItem('theme');
+    if (savedTheme) {
+      document.documentElement.setAttribute('data-theme', savedTheme);
+      updateThemeIcon(savedTheme);
+    }
+
+    themeToggle.addEventListener('click', () => {
+      const currentTheme = document.documentElement.getAttribute('data-theme');
+      const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+      
+      document.documentElement.setAttribute('data-theme', newTheme);
+      localStorage.setItem('theme', newTheme);
+      updateThemeIcon(newTheme);
+    });
+
+    function updateThemeIcon(theme) {
+      themeIcon.className = theme === 'dark' ? 'fas fa-sun' : 'fas fa-moon';
+    }
+
+    // Existing scroll functionality
     document.getElementById('scrollDownBtn').addEventListener('click', function(e) {
       e.preventDefault();
       document.querySelector('.cta-section').scrollIntoView({
         behavior: 'smooth'
       });
     });
+
+    // Service Worker registration
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', () => {
+        navigator.serviceWorker.register('/sw.js')
+          .then(registration => {
+            console.log('ServiceWorker registration successful');
+          })
+          .catch(err => {
+            console.log('ServiceWorker registration failed: ', err);
+          });
+      });
+    }
+
+    // FAQ Functionality
+    const faqItems = document.querySelectorAll('.faq-item');
+    faqItems.forEach(item => {
+      const question = item.querySelector('.faq-question');
+      question.addEventListener('click', () => {
+        const isActive = item.classList.contains('active');
+        faqItems.forEach(faq => faq.classList.remove('active'));
+        if (!isActive) {
+          item.classList.add('active');
+        }
+      });
+    });
+
+    // Newsletter Form
+    const newsletterForm = document.getElementById('newsletterForm');
+    const formMessage = document.querySelector('.form-message');
+
+    newsletterForm.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const email = newsletterForm.querySelector('input[type="email"]').value;
+      
+      try {
+        // Simulasi pengiriman data ke server
+        await new Promise(resolve => setTimeout(resolve, 1000));
+        
+        formMessage.textContent = 'Terima kasih telah berlangganan newsletter kami!';
+        formMessage.className = 'form-message success';
+        newsletterForm.reset();
+      } catch (error) {
+        formMessage.textContent = 'Maaf, terjadi kesalahan. Silakan coba lagi.';
+        formMessage.className = 'form-message error';
+      }
+    });
+
+    // Chat Widget
+    const chatToggle = document.getElementById('chatToggle');
+    const chatWidget = document.getElementById('chatWidget');
+    const closeChat = document.getElementById('closeChat');
+    const chatForm = document.getElementById('chatForm');
+    const chatMessages = document.getElementById('chatMessages');
+
+    chatToggle.addEventListener('click', () => {
+      chatWidget.classList.add('active');
+    });
+
+    closeChat.addEventListener('click', () => {
+      chatWidget.classList.remove('active');
+    });
+
+    chatForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const input = chatForm.querySelector('input');
+      const message = input.value.trim();
+      
+      if (message) {
+        // Add user message
+        const userMessage = document.createElement('div');
+        userMessage.className = 'message user';
+        userMessage.innerHTML = `<p>${message}</p>`;
+        chatMessages.appendChild(userMessage);
+        
+        // Clear input
+        input.value = '';
+        
+        // Scroll to bottom
+        chatMessages.scrollTop = chatMessages.scrollHeight;
+        
+        // Simulate response
+        setTimeout(() => {
+          const systemMessage = document.createElement('div');
+          systemMessage.className = 'message system';
+          systemMessage.innerHTML = `<p>Terima kasih atas pesannya. Tim kami akan segera menghubungi Anda.</p>`;
+          chatMessages.appendChild(systemMessage);
+          chatMessages.scrollTop = chatMessages.scrollHeight;
+        }, 1000);
+      }
+    });
+
+    // Create particles
+    const particlesContainer = document.getElementById('particles');
+    const particleCount = 50;
+
+    for (let i = 0; i < particleCount; i++) {
+      const particle = document.createElement('div');
+      particle.className = 'particle';
+      
+      // Random position
+      particle.style.left = Math.random() * 100 + '%';
+      particle.style.top = Math.random() * 100 + '%';
+      
+      // Random size
+      const size = Math.random() * 4 + 2;
+      particle.style.width = size + 'px';
+      particle.style.height = size + 'px';
+      
+      // Random animation delay
+      particle.style.animationDelay = Math.random() * 3 + 's';
+      
+      particlesContainer.appendChild(particle);
+    }
+
+    // Scroll Down Function
+    function scrollToContent() {
+      const aboutSection = document.getElementById('about');
+      aboutSection.scrollIntoView({ behavior: 'smooth' });
+    }
   </script>
 </body>
 </html>

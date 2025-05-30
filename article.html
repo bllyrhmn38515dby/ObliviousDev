@@ -1,0 +1,654 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Tren Pengembangan Web di Tahun 2024 - Oblivious Dev</title>
+  <link rel="icon" type="image/png" href="ICONODcrop.png">
+  <link rel="manifest" href="manifest.json">
+  <meta name="theme-color" content="#7c3aed">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    .article-hero {
+      background: var(--glass-bg);
+      border-radius: 20px;
+      margin: 40px auto;
+      padding: 60px 30px;
+      text-align: center;
+      box-shadow: 0 15px 35px rgba(0,0,0,0.4);
+      border: 1px solid var(--glass-border);
+    }
+
+    .article-hero h1 {
+      font-size: 3rem;
+      color: var(--text-color);
+      margin-bottom: 20px;
+    }
+
+    .article-meta {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 20px;
+      color: var(--text-color);
+      opacity: 0.7;
+      font-size: 0.9rem;
+      margin-bottom: 20px;
+    }
+
+    .article-meta i {
+      margin-right: 5px;
+    }
+
+    .article-category {
+      color: var(--primary-color);
+      font-size: 1.1rem;
+      margin-bottom: 10px;
+      display: block;
+    }
+
+    .article-container {
+      display: grid;
+      grid-template-columns: 2fr 1fr;
+      gap: 40px;
+      margin: 40px 0;
+    }
+
+    .article-content {
+      background: var(--glass-bg);
+      border-radius: 20px;
+      padding: 40px;
+      box-shadow: 0 15px 35px rgba(0,0,0,0.4);
+      border: 1px solid var(--glass-border);
+    }
+
+    .article-image {
+      width: 100%;
+      height: 400px;
+      object-fit: cover;
+      border-radius: 20px;
+      margin-bottom: 30px;
+    }
+
+    .article-text {
+      color: var(--text-color);
+      line-height: 1.8;
+      font-size: 1.1rem;
+    }
+
+    .article-text p {
+      margin-bottom: 20px;
+    }
+
+    .article-text h2 {
+      font-size: 2rem;
+      color: var(--text-color);
+      margin: 40px 0 20px;
+    }
+
+    .article-text h3 {
+      font-size: 1.5rem;
+      color: var(--text-color);
+      margin: 30px 0 15px;
+    }
+
+    .article-text ul, 
+    .article-text ol {
+      margin: 20px 0;
+      padding-left: 20px;
+    }
+
+    .article-text li {
+      margin-bottom: 10px;
+    }
+
+    .article-text blockquote {
+      border-left: 4px solid var(--primary-color);
+      padding-left: 20px;
+      margin: 20px 0;
+      font-style: italic;
+      color: var(--text-color);
+      opacity: 0.8;
+    }
+
+    .article-text code {
+      background: rgba(124, 58, 237, 0.1);
+      padding: 2px 5px;
+      border-radius: 5px;
+      font-family: monospace;
+    }
+
+    .article-text pre {
+      background: rgba(124, 58, 237, 0.1);
+      padding: 20px;
+      border-radius: 10px;
+      overflow-x: auto;
+      margin: 20px 0;
+    }
+
+    .article-text pre code {
+      background: none;
+      padding: 0;
+    }
+
+    .share-buttons {
+      display: flex;
+      gap: 15px;
+      margin: 30px 0;
+    }
+
+    .share-button {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      text-decoration: none;
+      transition: all 0.3s ease;
+    }
+
+    .share-button.facebook {
+      background: #1877f2;
+    }
+
+    .share-button.twitter {
+      background: #1da1f2;
+    }
+
+    .share-button.linkedin {
+      background: #0077b5;
+    }
+
+    .share-button:hover {
+      transform: translateY(-3px);
+    }
+
+    .comments-section {
+      margin-top: 40px;
+    }
+
+    .comments-section h3 {
+      font-size: 1.8rem;
+      color: var(--text-color);
+      margin-bottom: 30px;
+    }
+
+    .comment {
+      background: var(--glass-bg);
+      border-radius: 20px;
+      padding: 20px;
+      margin-bottom: 20px;
+      box-shadow: 0 15px 35px rgba(0,0,0,0.4);
+      border: 1px solid var(--glass-border);
+    }
+
+    .comment-header {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+      margin-bottom: 15px;
+    }
+
+    .comment-avatar {
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      object-fit: cover;
+    }
+
+    .comment-author {
+      color: var(--text-color);
+      font-weight: 600;
+    }
+
+    .comment-date {
+      color: var(--text-color);
+      opacity: 0.7;
+      font-size: 0.9rem;
+    }
+
+    .comment-content {
+      color: var(--text-color);
+      line-height: 1.6;
+    }
+
+    .comment-form {
+      margin-top: 40px;
+    }
+
+    .comment-form h4 {
+      font-size: 1.5rem;
+      color: var(--text-color);
+      margin-bottom: 20px;
+    }
+
+    .form-group {
+      margin-bottom: 20px;
+    }
+
+    .form-group label {
+      display: block;
+      color: var(--text-color);
+      margin-bottom: 8px;
+      font-weight: 500;
+    }
+
+    .form-group input,
+    .form-group textarea {
+      width: 100%;
+      padding: 12px;
+      border: 1px solid var(--glass-border);
+      border-radius: 10px;
+      background: rgba(255, 255, 255, 0.1);
+      color: var(--text-color);
+      font-family: 'Poppins', sans-serif;
+      transition: all 0.3s ease;
+    }
+
+    .form-group input:focus,
+    .form-group textarea:focus {
+      outline: none;
+      border-color: var(--primary-color);
+      box-shadow: 0 0 0 2px rgba(124, 58, 237, 0.2);
+    }
+
+    .form-group textarea {
+      height: 150px;
+      resize: vertical;
+    }
+
+    .submit-button {
+      background: var(--primary-color);
+      color: white;
+      padding: 15px 30px;
+      border: none;
+      border-radius: 30px;
+      cursor: pointer;
+      font-weight: 600;
+      transition: all 0.3s ease;
+    }
+
+    .submit-button:hover {
+      background: var(--secondary-color);
+      transform: translateY(-3px);
+    }
+
+    .article-sidebar {
+      position: sticky;
+      top: 100px;
+    }
+
+    .sidebar-widget {
+      background: var(--glass-bg);
+      border-radius: 20px;
+      padding: 30px;
+      margin-bottom: 30px;
+      box-shadow: 0 15px 35px rgba(0,0,0,0.4);
+      border: 1px solid var(--glass-border);
+    }
+
+    .widget-title {
+      color: var(--text-color);
+      font-size: 1.5rem;
+      margin-bottom: 20px;
+      padding-bottom: 10px;
+      border-bottom: 2px solid var(--primary-color);
+    }
+
+    .related-posts {
+      list-style: none;
+      padding: 0;
+    }
+
+    .related-post {
+      display: flex;
+      gap: 15px;
+      margin-bottom: 20px;
+    }
+
+    .related-post-image {
+      width: 100px;
+      height: 70px;
+      border-radius: 10px;
+      object-fit: cover;
+    }
+
+    .related-post-content h4 {
+      color: var(--text-color);
+      margin-bottom: 5px;
+      font-size: 1rem;
+    }
+
+    .related-post-date {
+      color: var(--text-color);
+      opacity: 0.7;
+      font-size: 0.9rem;
+    }
+
+    .tags-cloud {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .tag {
+      background: rgba(124, 58, 237, 0.1);
+      color: var(--primary-color);
+      padding: 5px 15px;
+      border-radius: 20px;
+      font-size: 0.9rem;
+      text-decoration: none;
+      transition: all 0.3s ease;
+    }
+
+    .tag:hover {
+      background: var(--primary-color);
+      color: white;
+    }
+
+    @media (max-width: 768px) {
+      .article-container {
+        grid-template-columns: 1fr;
+      }
+
+      .article-hero h1 {
+        font-size: 2.5rem;
+      }
+
+      .article-image {
+        height: 250px;
+      }
+
+      .article-text {
+        font-size: 1rem;
+      }
+
+      .article-text h2 {
+        font-size: 1.8rem;
+      }
+
+      .article-text h3 {
+        font-size: 1.3rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="loading-overlay">
+    <div class="loader"></div>
+  </div>
+  <div class="progress-bar"></div>
+
+  <div class="navbar">
+    <div class="container">
+      <a href="index.html" class="logo">
+        <img src="ICONODcrop.png" alt="Oblivious Dev Logo">
+        Oblivious Dev
+      </a>
+      <ul class="nav-links">
+        <li><a href="about.html">Tentang Kami</a></li>
+        <li><a href="services.html">Layanan</a></li>
+        <li><a href="portfolio.html">Portofolio</a></li>
+        <li><a href="blog.html" class="active">Blog</a></li>
+        <li><a href="contact.html">Kontak</a></li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="page-section">
+    <section class="article-hero" data-aos="fade-up">
+      <span class="article-category">Web Development</span>
+      <h1>Tren Pengembangan Web di Tahun 2024</h1>
+      <div class="article-meta">
+        <span><i class="far fa-calendar"></i> 15 Maret 2024</span>
+        <span><i class="far fa-user"></i> Admin</span>
+        <span><i class="far fa-comments"></i> 5 Komentar</span>
+        <span><i class="far fa-clock"></i> 10 menit baca</span>
+      </div>
+    </section>
+
+    <div class="article-container">
+      <div class="article-content" data-aos="fade-up">
+        <img src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Web Development" class="article-image">
+        
+        <div class="article-text">
+          <p>Pengembangan web terus berkembang dengan pesat di tahun 2024. Teknologi baru dan tren inovatif muncul untuk meningkatkan pengalaman pengguna dan efisiensi pengembangan. Mari kita eksplorasi tren-tren terbaru yang akan mendominasi industri web development tahun ini.</p>
+
+          <h2>1. AI dan Machine Learning dalam Web Development</h2>
+          <p>Integrasi AI dan machine learning dalam pengembangan web menjadi semakin umum. Beberapa implementasi populer meliputi:</p>
+          <ul>
+            <li>Chatbots yang lebih cerdas dan kontekstual</li>
+            <li>Personalization engine untuk konten dinamis</li>
+            <li>Analisis perilaku pengguna yang lebih akurat</li>
+            <li>Optimasi performa otomatis</li>
+          </ul>
+
+          <h2>2. WebAssembly (Wasm)</h2>
+          <p>WebAssembly terus mendapatkan momentum sebagai teknologi yang memungkinkan eksekusi kode berperforma tinggi di browser. Keuntungan utama meliputi:</p>
+          <ul>
+            <li>Performa yang mendekati native</li>
+            <li>Dukungan multi-bahasa pemrograman</li>
+            <li>Kompatibilitas lintas platform</li>
+          </ul>
+
+          <blockquote>
+            "WebAssembly adalah masa depan pengembangan web, memungkinkan aplikasi web dengan performa yang setara dengan aplikasi native."
+          </blockquote>
+
+          <h2>3. Progressive Web Apps (PWA)</h2>
+          <p>PWA semakin matang dengan fitur-fitur baru seperti:</p>
+          <ul>
+            <li>Offline functionality yang lebih baik</li>
+            <li>Push notifications yang lebih canggih</li>
+            <li>Background sync</li>
+            <li>Installation experience yang lebih mulus</li>
+          </ul>
+
+          <h2>4. JAMstack Architecture</h2>
+          <p>JAMstack terus berkembang dengan fokus pada:</p>
+          <ul>
+            <li>Decoupled architecture</li>
+            <li>Static site generation</li>
+            <li>API-first approach</li>
+            <li>Enhanced security</li>
+          </ul>
+
+          <h2>5. Micro Frontends</h2>
+          <p>Pendekatan micro frontends semakin populer untuk aplikasi web skala besar:</p>
+          <ul>
+            <li>Independent deployment</li>
+            <li>Team autonomy</li>
+            <li>Technology agnostic</li>
+            <li>Scalable architecture</li>
+          </ul>
+
+          <h2>Kesimpulan</h2>
+          <p>Tahun 2024 membawa banyak inovasi dalam pengembangan web. Fokus utama adalah pada performa, keamanan, dan pengalaman pengguna yang lebih baik. Sebagai developer, penting untuk tetap mengikuti tren ini dan mengadopsi teknologi yang relevan dengan kebutuhan proyek.</p>
+        </div>
+
+        <div class="share-buttons">
+          <a href="#" class="share-button facebook">
+            <i class="fab fa-facebook-f"></i>
+          </a>
+          <a href="#" class="share-button twitter">
+            <i class="fab fa-twitter"></i>
+          </a>
+          <a href="#" class="share-button linkedin">
+            <i class="fab fa-linkedin-in"></i>
+          </a>
+        </div>
+
+        <div class="comments-section">
+          <h3>Komentar (5)</h3>
+          
+          <div class="comment">
+            <div class="comment-header">
+              <img src="https://randomuser.me/api/portraits/men/1.jpg" alt="User Avatar" class="comment-avatar">
+              <div>
+                <div class="comment-author">Budi Santoso</div>
+                <div class="comment-date">14 Maret 2024</div>
+              </div>
+            </div>
+            <div class="comment-content">
+              Artikel yang sangat informatif! Saya tertarik dengan implementasi WebAssembly. Apakah ada contoh konkret yang bisa dijelaskan lebih detail?
+            </div>
+          </div>
+
+          <div class="comment">
+            <div class="comment-header">
+              <img src="https://randomuser.me/api/portraits/women/1.jpg" alt="User Avatar" class="comment-avatar">
+              <div>
+                <div class="comment-author">Siti Rahayu</div>
+                <div class="comment-date">13 Maret 2024</div>
+              </div>
+            </div>
+            <div class="comment-content">
+              Bagus sekali penjelasannya tentang PWA. Saya sudah mencoba mengimplementasikan beberapa fitur PWA di proyek terakhir saya dan hasilnya sangat memuaskan.
+            </div>
+          </div>
+
+          <div class="comment-form">
+            <h4>Tinggalkan Komentar</h4>
+            <form id="commentForm">
+              <div class="form-group">
+                <label for="name">Nama</label>
+                <input type="text" id="name" name="name" required>
+              </div>
+              <div class="form-group">
+                <label for="email">Email</label>
+                <input type="email" id="email" name="email" required>
+              </div>
+              <div class="form-group">
+                <label for="comment">Komentar</label>
+                <textarea id="comment" name="comment" required></textarea>
+              </div>
+              <button type="submit" class="submit-button">Kirim Komentar</button>
+            </form>
+          </div>
+        </div>
+      </div>
+
+      <div class="article-sidebar">
+        <div class="sidebar-widget" data-aos="fade-left">
+          <h3 class="widget-title">Artikel Terkait</h3>
+          <ul class="related-posts">
+            <li class="related-post">
+              <img src="https://images.unsplash.com/photo-1555949963-ff9fe0c870eb?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Related Post" class="related-post-image">
+              <div class="related-post-content">
+                <h4>Flutter vs React Native: Mana yang Lebih Baik?</h4>
+                <span class="related-post-date">10 Maret 2024</span>
+              </div>
+            </li>
+            <li class="related-post">
+              <img src="https://images.unsplash.com/photo-1550751827-4bd374c3f58b?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Related Post" class="related-post-image">
+              <div class="related-post-content">
+                <h4>Integrasi AI dalam Pengembangan Web Modern</h4>
+                <span class="related-post-date">5 Maret 2024</span>
+              </div>
+            </li>
+            <li class="related-post">
+              <img src="https://images.unsplash.com/photo-1561070791-2526d30994b5?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Related Post" class="related-post-image">
+              <div class="related-post-content">
+                <h4>Prinsip Dasar UI/UX Design</h4>
+                <span class="related-post-date">1 Maret 2024</span>
+              </div>
+            </li>
+          </ul>
+        </div>
+
+        <div class="sidebar-widget" data-aos="fade-left" data-aos-delay="100">
+          <h3 class="widget-title">Tag Populer</h3>
+          <div class="tags-cloud">
+            <a href="#" class="tag">Web Development</a>
+            <a href="#" class="tag">JavaScript</a>
+            <a href="#" class="tag">React</a>
+            <a href="#" class="tag">Flutter</a>
+            <a href="#" class="tag">UI/UX</a>
+            <a href="#" class="tag">AI</a>
+            <a href="#" class="tag">Cloud</a>
+            <a href="#" class="tag">Mobile</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    &copy; 2024 Oblivious Dev. All rights reserved.
+  </footer>
+
+  <button class="theme-toggle" id="themeToggle" aria-label="Toggle Dark Mode">
+    <i class="fas fa-moon"></i>
+  </button>
+
+  <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+  <script>
+    // Loading Animation
+    window.addEventListener('load', () => {
+      const loadingOverlay = document.querySelector('.loading-overlay');
+      loadingOverlay.classList.add('hidden');
+    });
+
+    // Progress Bar
+    window.addEventListener('scroll', () => {
+      const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+      const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+      const scrolled = (winScroll / height) * 100;
+      document.querySelector('.progress-bar').style.width = scrolled + '%';
+    });
+
+    // AOS initialization
+    AOS.init({
+      duration: 1000,
+      once: true
+    });
+
+    // Theme Toggle
+    const themeToggle = document.getElementById('themeToggle');
+    const themeIcon = themeToggle.querySelector('i');
+    
+    const savedTheme = localStorage.getItem('theme');
+    if (savedTheme) {
+      document.documentElement.setAttribute('data-theme', savedTheme);
+      updateThemeIcon(savedTheme);
+    }
+
+    themeToggle.addEventListener('click', () => {
+      const currentTheme = document.documentElement.getAttribute('data-theme');
+      const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+      
+      document.documentElement.setAttribute('data-theme', newTheme);
+      localStorage.setItem('theme', newTheme);
+      updateThemeIcon(newTheme);
+    });
+
+    function updateThemeIcon(theme) {
+      themeIcon.className = theme === 'dark' ? 'fas fa-sun' : 'fas fa-moon';
+    }
+
+    // Comment Form Submission
+    const commentForm = document.getElementById('commentForm');
+    commentForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+      
+      // Get form data
+      const formData = new FormData(commentForm);
+      const data = Object.fromEntries(formData);
+      
+      // Here you would typically send the data to your server
+      console.log('Comment submitted:', data);
+      
+      // Show success message
+      alert('Terima kasih! Komentar Anda telah terkirim dan sedang menunggu moderasi.');
+      
+      // Reset form
+      commentForm.reset();
+    });
+  </script>
+</body>
+</html> 
